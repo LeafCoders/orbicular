@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="sv-SE">
+<head>
+  <meta charset="utf-8">
+  <title>Orbicular</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+  <link rel="stylesheet" href="./assets/css/app.css">
+  <script src="./assets/js/vendor/jquery-1.8.1.min.js"></script>
+  <script type='text/javascript' src="./assets/js/vendor/angular.js"></script>
+  <script type='text/javascript' src="./assets/js/vendor/angular-resource.js"></script>
+  <script type='text/javascript' src="./assets/js/vendor/angular-animate.js"></script>
+</head>
+<body ng-app="orbicularApp">
+
+  <div id="posters" ng-controller="PosterController">
+    <div ng-repeat="p in posters" class="poster">
+      <div>
+        <img class="aposter" ng-src="{{ p.img }}"/>
+      </div>
+    </div>
+  </div>
+
+  <div id="sidePanel">
+    <div id="sidePanelInset"></div>
+
+    <div class="welcome" ng-controller="TimeController">
+      <p style="float: right;">{{date}} {{time}}</p>
+      <p>Välkommen till</p>
+      <img src="./assets/img/logotype.jpg" atl="The logotype">
+    </div>
+
+    <div ng-controller="BookingController">
+      <div ng-repeat="b in bookings" class="booking">
+        <table cellspacing="0">
+          <tbody>
+            <tr><td class="bookingCustomer" colspan="2">{{b.customer}}</td></tr>
+            <tr>
+              <td class="bookingTime">{{b.startTime | time}}</td>
+              <td class="bookingRoom" rowspan="2">{{b.room}}</td>
+            </tr>
+            <tr>
+              <td class="bookingTime bookingEndTime">{{b.endTime | time}}</td>
+            </tr>
+            <tr ng-if="b.roomImg">
+              <td class="bookingRoomImg" colspan="2">
+                <img src="{{b.roomImg}}"/>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script type='text/javascript' src='./assets/js/main.js'></script>
+  <script type='text/javascript' src='./assets/js/PosterController.js'></script>
+  <script type='text/javascript' src='./assets/js/TimeController.js'></script>
+  <script type='text/javascript' src='./assets/js/BookingController.js'></script>
+
+</body>
+</html>

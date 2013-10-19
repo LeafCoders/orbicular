@@ -1,0 +1,223 @@
+/* @font-face kit by Fonts2u (http://www.fonts2u.com) */
+@font-face {
+  font-family: "Caviar Dreams";
+  src:
+    url("CaviarDreams.eot?") format("eot"),
+    url("CaviarDreams.woff") format("woff"),
+    url("CaviarDreams.ttf") format("truetype"),
+    url("CaviarDreams.svg#CaviarDreams") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ddd;
+  background-image: url('../img/background.jpg');
+}
+
+/* ---- Layout ---- */
+
+#posters {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 30%;
+  bottom: 0;
+  overflow: hidden;
+}
+
+#sidePanel {
+  position: absolute;
+  left: 70%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+#sidePanelInset {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 2%;
+  right: 0;
+  background-color: #FFF;
+
+  -moz-box-shadow:    0px 2px 5px 0px #999;
+  -webkit-box-shadow: 0px 2px 5px 0px #999;
+  -o-box-shadow:      0px 2px 5px 0px #999;
+  -ms-box-shadow:     0px 2px 5px 0px #999;
+  box-shadow:         0px 2px 5px 0px #999;
+}
+
+
+/* ---- Poster ---- */
+
+.poster {
+  max-width: 100%;
+  max-height: 100%;
+  text-align: center;
+  overflow: hidden;
+
+  -webkit-transition: 1s linear all;
+  -moz-transition: 1s linear all;
+  -o-transition: 1s linear all;
+  transition: 1s linear all;
+}
+
+.poster > div {
+  margin: 1%;
+}
+
+.poster img {
+  max-width: 100%;
+  max-height: 96%;
+  -moz-box-shadow:    0px 2px 5px 0px #333;
+  -webkit-box-shadow: 0px 2px 5px 0px #333;
+  -o-box-shadow:      0px 2px 5px 0px #333;
+  -ms-box-shadow:     0px 2px 5px 0px #333;
+  box-shadow:         0px 2px 5px 0px #333;
+}
+
+/* Poster animation */
+
+.poster.ng-enter {
+  max-height: 0;
+  opacity: 0;
+}
+.poster.ng-enter-active {
+  max-height: 100%;
+  opacity: 1;
+}
+
+.poster.ng-leave {
+  opacity: 1;
+}
+.poster.ng-leave-active {
+  opacity: 0;
+}
+
+
+/* ---- Welcome ---- */
+
+.welcome {
+  margin: 0 0 0 5px;
+  padding: 5px;
+  font-family: "Caviar Dreams";
+}
+
+.welcome p {
+  margin: 0;
+  padding: 5px;
+  font-size: 80%;
+  line-height: 80%;
+}
+
+.welcome img {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.welcome h1 {
+  margin: 0;
+  padding: 5px;
+  font-size: 100%;
+  line-height: 100%;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ---- Booking ---- */
+
+.booking {
+  width: 100%;
+  color: #FFF;
+  -moz-box-shadow:    0px 2px 5px 0px #999;
+  -webkit-box-shadow: 0px 2px 5px 0px #999;
+  -o-box-shadow:      0px 2px 5px 0px #999;
+  -ms-box-shadow:     0px 2px 5px 0px #999;
+  box-shadow:         0px 2px 5px 0px #999;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.booking table {
+  width: 100%;
+}
+
+.booking td {
+  font-family: "Caviar Dreams";
+  margin: 0;
+}
+
+.bookingCustomer {
+  font-size: 100%;
+  line-height: 100%;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  
+  padding: 5px;
+  background-color: #693;
+}
+
+.bookingTime {
+  width: 25%;
+  font-size: 80%;
+  line-height: 100%;
+  padding: 5px;
+  background-color: #8A5;
+}
+
+.bookingEndTime {
+  text-align: right;
+}
+
+.bookingRoom {
+  font-size: 100%;
+  line-height: 100%;
+  padding: 5px;
+  background-color: #9B6;
+}
+
+.bookingRoomImg {
+  font-size: 1%;
+  line-height: 1%;
+  padding: 0;
+}
+
+.bookingRoomImg img {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* Booking animation */
+
+.booking.ng-enter {
+  max-height: 0;
+  -webkit-transition: 2s linear all;
+  -moz-transition: 2s linear all;
+  -o-transition: 2s linear all;
+  transition: 2s linear all;
+}
+.booking.ng-enter-active {
+  max-height: 520px;
+}
+
+.booking.ng-leave {
+  opacity: 1;
+  -webkit-transition: 1s linear all;
+  -moz-transition: 1s linear all;
+  -o-transition: 1s linear all;
+  transition: 1s linear all;
+}
+.booking.ng-leave-active {
+  opacity: 0;
+}
