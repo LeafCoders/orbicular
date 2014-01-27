@@ -1,13 +1,6 @@
-// Update body font size to width size
-function updateBodyFontSize() {
-  $('body').css({'font-size' : document.documentElement.clientWidth/7.0 + '%'});
-};
-$( document ).ready(function() {
-  updateBodyFontSize();
-});
-$( window ).resize(function() {
-  updateBodyFontSize();
-});
+
+// Base url to Rosette server
+var rosetteBaseUrl = "http://yourhost.se/api/v1-snapshot/";
 
 // Custom angular filters
 angular.module('orbicularFilters', [])
@@ -21,5 +14,27 @@ angular.module('orbicularFilters', [])
 // Main angular application instance
 var orbicularApp = angular.module('orbicularApp', ['ngResource', 'ngAnimate', 'orbicularFilters']);
 
-// Base url to Rosette server
-var rosetteBaseUrl = "http://yourhost.se/api/v1-snapshot/";
+
+
+
+// Update body font size to width size
+function updateBodyFontSize() {
+  $('body').css({'font-size' : document.documentElement.clientWidth/7.0 + '%'});
+};
+$(document).ready(function() {
+  updateBodyFontSize();
+});
+$(window).resize(function() {
+  updateBodyFontSize();
+});
+
+// Helper method to get text from a reference
+function getReferenceText(ref, refObjFunc) {
+  if (ref.idRef != null) {
+    if (ref.referredObject != null) {
+      return refObjFunc(ref.referredObject);
+    }
+  } else if ((ref.text != null)) {
+    return ref.text;
+  }
+}

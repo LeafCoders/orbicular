@@ -6,7 +6,7 @@
 orbicularApp.factory('bookings', function($resource){
   return {
     fetchBookings : function(callback){
-      var api = $resource(rosetteBaseUrl + 'posters?callback=JSON_CALLBACK', {}, {  // TODO: Get bookings instead of posters
+      var api = $resource(rosetteBaseUrl + 'bookings?callback=JSON_CALLBACK', {}, {
         fetch : {method:'JSONP', isArray: true}
       });
 
@@ -19,21 +19,22 @@ orbicularApp.factory('bookings', function($resource){
 
 
 function BookingController($scope, $http, $timeout, bookings) {
-  $scope.bookings = [
-    {'customer': 'Företag 1', 'startTime' : '2013-10-01 09:00 Europe/Stockholm', 'endTime' : '2013-10-01 12:00 Europe/Stockholm', 'room' : 'Boken', 'roomImg' : 'http://placehold.it/400x150' },
-    {'customer': 'Företag 2', 'startTime' : '2013-10-01 13:00 Europe/Stockholm', 'endTime' : '2013-10-01 16:30 Europe/Stockholm', 'room' : 'Ekkällan' },
-    {'customer': 'Företag 3', 'startTime' : '2013-10-01 13:00 Europe/Stockholm', 'endTime' : '2013-10-01 16:30 Europe/Stockholm', 'room' : 'Ekkällan' }
-  ];
-
-  var nextFetchTime = new Date(new Date().getTime() + 60*60*1000);  //TODO remove offset
+  var nextFetchTime = new Date(new Date().getTime() - 60*60*1000);  //TODO remove offset
   var currentBookings;
+  $scope.bookings = [];
+
+  $scope.locationName = function(booking) {
+    return getReferenceText(booking.location, function(obj) { return obj.name; });
+  }
 
   function bookingTimer() {
     var now = new Date();
 
     if (now >= nextFetchTime) {
+      // Wait 5 minutes until next fetch
+      nextFetchTime = now;
       nextFetchTime.setMinutes(nextFetchTime.getMinutes() + 5);
-      
+
       bookings.fetchBookings(function(data){
         if (JSON.stringify(currentBookings) != data) {
           currentBookings = angular.fromJson(data);

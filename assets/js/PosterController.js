@@ -18,32 +18,31 @@ orbicularApp.factory('posters', function($resource){
 });
 
 function PosterController($scope, $http, $timeout, posters) {
-
-  var images = [
-    "http://placehold.it/400x300",
-    "http://placehold.it/400x300",
-    "http://placehold.it/400x300",
-    "http://placehold.it/400x300",
-    "http://placehold.it/400x300",
-    "http://placehold.it/400x300"
-  ];
-
   var nextFetchTime = new Date();
   var currentPosters = new Array();
   var activePosterId = 0;
-
-  $scope.posters = [{'img': './assets/img/logotype.jpg' }];
+  $scope.posters = [];
 
   function posterTimer() {
     var now = new Date();
 
     if (now >= nextFetchTime) {
       // Wait 30 minutes until next fetch
+      nextFetchTime = now;
       nextFetchTime.setMinutes(nextFetchTime.getMinutes() + 30);
 
       posters.fetchPosters(function(data){
         if (JSON.stringify(currentPosters) != data) {
+          $scope.posters.length = 0;
           currentPosters = angular.fromJson(data);
+
+          // TODO: Remove this when images have been addes to Posters
+          currentPosters = [
+            {'img': "http://placehold.it/400x300", 'duration': 5},
+            {'img': "http://placehold.it/800x400", 'duration': 5},
+            {'img': "http://placehold.it/400x300", 'duration': 5}
+          ];
+
           activePosterId = -1;
         }
         nextPoster();
@@ -55,20 +54,29 @@ function PosterController($scope, $http, $timeout, posters) {
   }
 
   function nextPoster() {
-    activePosterId = activePosterId + 1;
-    if ((activePosterId < 0) || (activePosterId >= currentPosters.length)) {
-      activePosterId = 0;
-    }
+    if (currentPosters.length > 0) {
+      activePosterId = activePosterId + 1;
+      if ((activePosterId < 0) || (activePosterId >= currentPosters.length)) {
+        activePosterId = 0;
+      }
 
-    $timeout(function() {
-      $scope.posters.pop();
-      $scope.posters.push({'img': images[activePosterId] });
-      $scope.$apply();
-      
-      setTimeout(function() { posterTimer() }, 5000); //currentPosters[activePosterId].duration * 400);
-    });
+      $timeout(function() {
+        $scope.posters.pop();
+        $scope.posters.push(currentPosters[activePosterId]);
+        $scope.$apply();
+      });
+    }
+    setNextTimeout();
+  }
+
+  function setNextTimeout() {
+    var duration = 60; // Wait a minute 
+    if (currentPosters.length > 0) {
+      duration = currentPosters[activePosterId].duration || 10;
+    }
+    setTimeout(function() { posterTimer(); }, 1000*duration);
   }
 
   // Start timer
-  setTimeout(function() { posterTimer() }, 1000);
+  setTimeout(function() { posterTimer(); }, 1000);
 }

@@ -16,7 +16,6 @@
       var nextMinute = new Date(now);
       nextMinute.setMinutes(nextMinuteToShow, 0, 0);
       var millisToNextTick = (nextMinute.getTime() - now.getTime()) % 60000 + 100;
-      console.log(millisToNextTick);
       setTimeout(function() { timeTick() }, millisToNextTick);
     } else {
       // Wait another second
@@ -25,7 +24,7 @@
   }
 
   function updateTime(now) {
-    $scope.date = now.getDay() + " " + months[now.getMonth()];
+    $scope.date = now.getDate() + " " + months[now.getMonth()];
     $scope.time = prependZero(now.getHours()) + ":" + prependZero(now.getMinutes());
     $scope.$apply();
   }
