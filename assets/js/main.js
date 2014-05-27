@@ -2,39 +2,23 @@
 // Base url to Rosette server
 var rosetteBaseUrl = "http://yourhost.se/api/v1-snapshot/";
 
-// Custom angular filters
-angular.module('orbicularFilters', [])
-  // Returns time part of date in format "2013-10-29 10:45 Europe/Stockholm"
-  .filter('time', function() {
-    return function(input) {
-      return input.substr(11, 5);
-    };
-  });
 
 // Main angular application instance
-var orbicularApp = angular.module('orbicularApp', ['ngResource', 'ngAnimate', 'orbicularFilters']);
+var orbicularApp = angular.module('orbicularApp', ['ngResource', 'ngAnimate', 'ngSanitize']);
 
 
-
-
-// Update body font size to width size
-function updateBodyFontSize() {
-  $('body').css({'font-size' : document.documentElement.clientWidth/7.0 + '%'});
-};
-$(document).ready(function() {
-  updateBodyFontSize();
+// Returns time part of date in format "2013-10-29 10:45 Europe/Stockholm"
+orbicularApp.filter('time', function() {
+  return function(input) {
+    return input ? input.substr(11, 5) : '--:--';
+  };
+}).filter('dayOfDate', function() {
+  return function(input) {
+    return input ? parseInt(input.substr(8, 2), 10) : '--';
+  };
+}).filter('nameOfDay', function() {
+  return function(input) {
+    return ['Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör', 'Sön', '--'][Math.max(0, Math.min(7, input != null ? input : 7))];
+  };
 });
-$(window).resize(function() {
-  updateBodyFontSize();
-});
 
-// Helper method to get text from a reference
-function getReferenceText(ref, refObjFunc) {
-  if (ref.idRef != null) {
-    if (ref.referredObject != null) {
-      return refObjFunc(ref.referredObject);
-    }
-  } else if ((ref.text != null)) {
-    return ref.text;
-  }
-}

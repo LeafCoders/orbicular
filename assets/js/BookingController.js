@@ -9,6 +9,9 @@ orbicularApp.factory('bookings', function($resource){
       var api = $resource(rosetteBaseUrl + 'bookings?callback=JSON_CALLBACK', {}, {
         fetch : {method:'JSONP', isArray: true}
       });
+//      var api = $resource(rosetteBaseUrl + 'bookings.json', {}, {
+//        fetch : {method:'GET', isArray: true}
+//      });
 
       api.fetch(function(response){
         callback(response);
@@ -24,8 +27,20 @@ function BookingController($scope, $http, $timeout, bookings) {
   $scope.bookings = [];
 
   $scope.locationName = function(booking) {
-    return getReferenceText(booking.location, function(obj) { return obj.name; });
-  }
+    return utilGetReferenceText(booking.location, function(location) { return location.name; });
+  };
+  $scope.roomImageUrl = function(booking) {
+    var url = utilGetReferenceText(booking.location, function(location) {
+      return utilGetReferenceText(location.roomImage, function(upload) {
+        return upload.fileUrl;
+      });
+    });
+    if (url.indexOf('http') == 0) {
+      return url;
+    }
+    return null;
+  };
+
 
   function bookingTimer() {
     var now = new Date();
@@ -35,10 +50,12 @@ function BookingController($scope, $http, $timeout, bookings) {
       nextFetchTime = now;
       nextFetchTime.setMinutes(nextFetchTime.getMinutes() + 5);
 
-      bookings.fetchBookings(function(data){
-        if (JSON.stringify(currentBookings) != data) {
-          currentBookings = angular.fromJson(data);
-          $scope.bookings = currentBookings;
+      bookings.fetchBookings(function(data) {
+        // Test if data has changed before last fetch. Ugly code. Make it cleaner and better.
+        var dataString = JSON.stringify(data);
+        if (currentBookings != dataString) {
+          currentBookings = dataString;
+          $scope.bookings = angular.fromJson(data);
         }
         cycleBookings();
       });
@@ -55,9 +72,11 @@ function BookingController($scope, $http, $timeout, bookings) {
         $scope.$apply();
         $scope.bookings.unshift(cycleItem);
         $scope.$apply();
-        setTimeout(function() { bookingTimer() }, 3000);
+        // Wait 5 sec until next cycle
+        setTimeout(function() { bookingTimer() }, 5000);
       });
     } else {
+      // Wait a minute cause we have nothing to show right now
       setTimeout(function() { bookingTimer() }, 60*1000);
     }
   }

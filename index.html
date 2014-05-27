@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Orbicular</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
   <link rel="stylesheet" href="./assets/css/app.css" type='text/css'>
@@ -11,26 +12,30 @@
   <script type='text/javascript' src="./assets/js/vendor/angular.js"></script>
   <script type='text/javascript' src="./assets/js/vendor/angular-resource.js"></script>
   <script type='text/javascript' src="./assets/js/vendor/angular-animate.js"></script>
+  <script type='text/javascript' src="./assets/js/vendor/angular-sanitize.js"></script>
 </head>
 <body ng-app="orbicularApp">
+<!--  <div id="rect1610"></div> -->
 
-  <div id="posters" ng-controller="PosterController">
-    <div ng-repeat="p in posters" class="poster">
-      <img ng-src="{{p.img}}"/>
+  <div id="pagePanel" ng-controller="PageController">
+    <div ng-repeat="page in pages" class="page animate centerChildrenH" ng-class="{centerChildrenV: page.centerVertically}">
+      <div ng-include="page.view"></div>
+    </div>
+    <div id="indicators" class="centerChildrenH">
+      <div ng-repeat="ind in pageIndicators" class="boxShadowLight animate" ng-class="{active: ind.state == 1, visited: ind.state == 2}"></div>
     </div>
   </div>
 
+  <div id="sidePanelBackground" class="boxShadowLight"></div>
   <div id="sidePanel">
-    <div id="sidePanelInset"></div>
-
-    <div class="welcome" ng-controller="TimeController">
+    <div class="title" ng-controller="TimeController">
       <p style="float: right;">{{date}} {{time}}</p>
       <p>Välkommen till</p>
-      <img src="./assets/img/logotype.jpg" atl="The logotype">
+      <img src="./assets/img/logotype.png" atl="The logotype">
     </div>
 
     <div ng-controller="BookingController">
-      <div ng-repeat="b in bookings" class="booking">
+      <div ng-repeat="b in bookings" class="booking boxShadowLight">
         <table cellspacing="0">
           <tbody>
             <tr><td class="bookingCustomer" colspan="2">{{b.customerName}}</td></tr>
@@ -41,21 +46,27 @@
             <tr>
               <td class="bookingTime bookingEndTime">{{b.endTime | time}}</td>
             </tr>
-            <tr ng-if="b.roomImg">
+<!--            <tr ng-show="{{roomImageUrl(b) != ''}}">
               <td class="bookingRoomImg" colspan="2">
-                <img ng-src="{{b.roomImg}}"/>
+                <img ng-src="{{roomImageUrl(b)}}"/>
               </td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>
     </div>
   </div>
 
+  <div id="statusIndicators" ng-controller="StatusController">
+    <div ng-repeat="st in status" ng-class="{noConnection: !st.hasConnection}"></div>
+  </div>
+
   <script type='text/javascript' src='./assets/js/main.js'></script>
-  <script type='text/javascript' src='./assets/js/PosterController.js'></script>
+  <script type='text/javascript' src='./assets/js/Utils.js'></script>
+  <script type='text/javascript' src='./assets/js/StatusController.js'></script>
+  <script type='text/javascript' src='./assets/js/PageController.js'></script>
   <script type='text/javascript' src='./assets/js/TimeController.js'></script>
   <script type='text/javascript' src='./assets/js/BookingController.js'></script>
-
+  <script type='text/javascript' src='./assets/js/BibelnSeConverter.js'></script>
 </body>
 </html>
