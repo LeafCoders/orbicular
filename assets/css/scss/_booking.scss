@@ -1,0 +1,54 @@
+@import 'base';
+
+
+.booking {
+  position: relative;
+  width: 100%;
+  @include panel($booking-text-size, 1);
+  
+  margin-bottom: 0.3*$booking-text-size;
+
+  .time {
+    float: left;
+    width: 6.5*$booking-text-size;
+
+    & > span {
+      font-size: 0.7*$booking-text-size;
+      color: $light-text-color;
+    }
+  }
+
+  .location {
+    display: table-cell;
+  }
+
+  .locationImage {
+    line-height: 0;
+    padding: 0;
+    margin: 0;
+
+    & > img {
+      width: 100%;
+    }
+  }
+
+  /* Animations */
+  &.ng-enter {
+    max-height: 0;
+    -webkit-transition: 2s linear all;
+    -moz-transition: 2s linear all;
+    transition: 2s linear all;
+  }
+  &.ng-enter-active {
+    max-height: 520px;
+  }
+  &.ng-leave {
+    opacity: 1;
+    -webkit-transition: 1s linear all;
+    -moz-transition: 1s linear all;
+    transition: 1s linear all;
+  }
+  &.ng-leave-active {
+    opacity: 0;
+  }
+}

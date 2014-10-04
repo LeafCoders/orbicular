@@ -1,0 +1,45 @@
+@import 'base';
+
+.welcome {
+  position: absolute;
+  top: 2%;
+  max-height: 45%;
+  left: 5%;
+  right: 5%;
+  @include panel($welcome-text-size, 1.5);
+  text-align: center;
+  
+  p {
+    padding: 0.5vmin 2vmin;
+  }
+}
+
+
+.bibelnSe {
+  position: absolute;
+  top: 52%;
+  max-height: 45%;
+  left: 5%;
+  right: 5%;
+  @include panel($welcome-text-size, 1.5);
+  text-align: center;
+
+  p {
+    padding: 0.5vmin 2vmin;
+  }
+  a {
+    text-decoration: none;
+    color: $main-text-color;
+  }
+  .poetry {
+  }
+  .line {
+  }
+  .bibel_link {
+  }
+  .bibelnse_link {
+    font-size: 0.8*$welcome-text-size;
+    color: $light-text-color;
+  }
+}
+

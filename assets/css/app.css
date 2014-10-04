@@ -1,33 +1,21 @@
-body {
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a,
+em, img, small, strong, b, u, i, center, ol, ul, li,
+table, caption, tbody, tfoot, thead, tr, th, td,
+embed, figure, figcaption, footer, header, hgroup, video {
   margin: 0;
   padding: 0;
-  background-color: #ddd;
-  background-image: url('../img/background.jpg');
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
 
-  overflow: hidden;
-  font-size: 2vw;
-  font-family: 'Open Sans', sans-serif;
-}
-
-h1 { font-size: 3vw; }
-h2 { font-size: 2.5vw; }
-p  { font-size: 2vw; }
-a  { color: #000; text-decoration: none; }
-
-.animate {
-  -webkit-transition: all linear 1.0s;
-  -moz-transition: all linear 1.0s;
-  transition: all linear 1.0s;
-}
-
-.centerChildrenH {
+.centerChildrenH, .page, #pageIndicators {
   display: -webkit-flex;
   display: -moz-flex;
   display: flex;
   -webkit-justify-content: center;
   -moz-justify-content: center;
-  justify-content: center;
-}
+  justify-content: center; }
 
 .centerChildrenV {
   display: -webkit-flex;
@@ -35,52 +23,482 @@ a  { color: #000; text-decoration: none; }
   display: flex;
   -webkit-align-items: center;
   -moz-align-items: center;
-  align-items: center;
-}
+  align-items: center; }
 
-.boxShadowDark {
-  -webkit-box-shadow: 0px 2px 5px 0px #333;
-  -moz-box-shadow:    0px 2px 5px 0px #333;
-  box-shadow:         0px 2px 5px 0px #333;
-}
+.animate, .page, #pageIndicators > div {
+  -webkit-transition: all linear 1.0s;
+  -moz-transition: all linear 1.0s;
+  transition: all linear 1.0s; }
 
-.boxShadowLight {
-  -webkit-box-shadow: 0px 2px 5px 0px #999;
-  -moz-box-shadow:    0px 2px 5px 0px #999;
-  box-shadow:         0px 2px 5px 0px #999;
-}
-
-
-/* ---- Layout ---- */
+#content {
+  width: 100vw;
+  height: 56.25vw;
+  max-height: 100vh;
+  max-width: 177.77778vh;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ddd;
+  background-image: url("../img/background.jpg");
+  font-family: 'Open Sans', sans-serif; }
 
 #pagePanel {
   position: absolute;
   left: 0;
-  right: 30%;
+  right: 25%;
   top: 0;
   bottom: 0;
-}
+  z-index: 100; }
 
 #sidePanel {
   position: absolute;
-  left: 70%;
-  right: 0.3%;
+  left: 75.2%;
+  right: 0;
   top: 0;
   bottom: 0;
-  z-index: 11;
-}
+  z-index: 20; }
 
 #sidePanelBackground {
   position: absolute;
-  left: 70.5%;
-  right: 0.7%;
+  left: 75.7%;
+  right: 0.5%;
   top: 0;
   bottom: 0;
-
   z-index: 10;
   background-color: #FFF;
-}
+  -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  box-shadow: 0px 0.25vmin 0.6vmin 0px #999; }
 
+.centerChildrenH, .page, #pageIndicators {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center; }
+
+.centerChildrenV {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center; }
+
+.animate, .page, #pageIndicators > div {
+  -webkit-transition: all linear 1.0s;
+  -moz-transition: all linear 1.0s;
+  transition: all linear 1.0s; }
+
+.page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 1.5%;
+  bottom: 1.5%;
+  padding: 1%;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden img;
+    backface-visibility--webkit-flex-shrink: 0;
+    backface-visibility--moz-flex-shrink: 0;
+    backface-visibility-flex-shrink: 0;
+    backface-visibility-max-width: 100%;
+    backface-visibility-max-height: 100%;
+    backface-visibility--webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+    backface-visibility--moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+    backface-visibility-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  /* Anumations */ }
+  .page.ng-enter {
+    -webkit-transform: perspective(1000) scale(0.2) rotateY(180deg);
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform: perspective(1000) scale(0.2) rotateY(180deg);
+    -moz-transform-origin: 50% 50%;
+    transform: perspective(1000) scale(0.2) rotateY(180deg);
+    transform-origin: 50% 50%; }
+  .page.ng-enter-active {
+    -webkit-transform: perspective(1000) scale(1) rotateY(0);
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform: perspective(1000) scale(1) rotateY(0);
+    -moz-transform-origin: 50% 50%;
+    transform: perspective(1000) scale(1) rotateY(0);
+    transform-origin: 50% 50%; }
+  .page.ng-leave {
+    -webkit-transform: perspective(1000) scale(1) rotateY(0);
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform: perspective(1000) scale(1) rotateY(0);
+    -moz-transform-origin: 50% 50%;
+    transform: perspective(1000) scale(1) rotateY(0);
+    transform-origin: 50% 50%; }
+  .page.ng-leave-active {
+    -webkit-transform: perspective(1000) scale(0.2) rotateY(-180deg);
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform: perspective(1000) scale(0.2) rotateY(-180deg);
+    -moz-transform-origin: 50% 50%;
+    transform: perspective(1000) scale(0.2) rotateY(-180deg);
+    transform-origin: 50% 50%; }
+
+.centerChildrenH, .page, #pageIndicators {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center; }
+
+.centerChildrenV {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center; }
+
+.animate, .page, #pageIndicators > div {
+  -webkit-transition: all linear 1.0s;
+  -moz-transition: all linear 1.0s;
+  transition: all linear 1.0s; }
+
+.welcome {
+  position: absolute;
+  top: 2%;
+  max-height: 45%;
+  left: 5%;
+  right: 5%;
+  color: #000;
+  background-color: #FFF;
+  overflow: hidden;
+  opacity: 1;
+  -webkit-border-radius: 1.05vmin;
+  -moz-border-radius: 1.05vmin;
+  border-radius: 1.05vmin;
+  -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  text-align: center; }
+  .welcome h1 {
+    padding: 0.875vmin;
+    font-size: 3vmin;
+    line-height: 3vmin;
+    color: #FFF;
+    background-color: #73B532;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .welcome > div {
+    padding: 0.875vmin;
+    font-size: 2.5vmin; }
+  .welcome p {
+    padding: 0.5vmin 2vmin; }
+
+.bibelnSe {
+  position: absolute;
+  top: 52%;
+  max-height: 45%;
+  left: 5%;
+  right: 5%;
+  color: #000;
+  background-color: #FFF;
+  overflow: hidden;
+  opacity: 1;
+  -webkit-border-radius: 1.05vmin;
+  -moz-border-radius: 1.05vmin;
+  border-radius: 1.05vmin;
+  -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  text-align: center; }
+  .bibelnSe h1 {
+    padding: 0.875vmin;
+    font-size: 3vmin;
+    line-height: 3vmin;
+    color: #FFF;
+    background-color: #73B532;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .bibelnSe > div {
+    padding: 0.875vmin;
+    font-size: 2.5vmin; }
+  .bibelnSe p {
+    padding: 0.5vmin 2vmin; }
+  .bibelnSe a {
+    text-decoration: none;
+    color: #000; }
+  .bibelnSe .bibelnse_link {
+    font-size: 2vmin;
+    color: #999; }
+
+.centerChildrenH, .page, #pageIndicators {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center; }
+
+.centerChildrenV {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center; }
+
+.animate, .page, #pageIndicators > div {
+  -webkit-transition: all linear 1.0s;
+  -moz-transition: all linear 1.0s;
+  transition: all linear 1.0s; }
+
+@-webkit-keyframes calendarAnim {
+  0% {
+    top: 0; }
+  50% {
+    top: 0; }
+  70% {
+    top: -60%; }
+  100% {
+    top: -60%; } }
+@keyframes calendarAnim {
+  0% {
+    top: 0; }
+  50% {
+    top: 0; }
+  70% {
+    top: -60%; }
+  100% {
+    top: -60%; } }
+.calendar {
+  position: absolute;
+  top: 0;
+  left: 3%;
+  right: 3%;
+  color: #000;
+  background-color: #FFF;
+  overflow: hidden;
+  opacity: 1;
+  -webkit-border-radius: 1.05vmin;
+  -moz-border-radius: 1.05vmin;
+  border-radius: 1.05vmin;
+  -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  padding-bottom: 1.25vmin;
+  -webkit-animation: calendarAnim 16s;
+  -moz-animation: calendarAnim 16s;
+  animation: calendarAnim 16s; }
+  .calendar h1 {
+    padding: 0.875vmin;
+    font-size: 3vmin;
+    line-height: 3vmin;
+    color: #FFF;
+    background-color: #73B532;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .calendar > div {
+    padding: 0.875vmin;
+    font-size: 2.5vmin; }
+
+.calDay {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  font-weight: 900;
+  padding: 1vmin; }
+  .calDay:not(:first-child) {
+    border-bottom: 1px solid #EEE;
+    margin: 0 0.75vmin; }
+  .calDay.sunday {
+    background-color: #FEE; }
+
+.calDate {
+  -webkit-align-self: flex-start;
+  -moz-align-self: flex-start;
+  align-self: flex-start;
+  -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  width: 5vmin;
+  background-color: #73B532;
+  color: #FFF;
+  padding: 0.25vmin;
+  text-transform: uppercase;
+  text-align: center;
+  margin-right: 2.5vmin; }
+  .calDate div:nth-child(1) {
+    font-size: 2.5vmin;
+    line-height: 2.75vmin;
+    color: #FFF; }
+  .calDate div:nth-child(2) {
+    font-size: 1.25vmin;
+    line-height: 1.5vmin; }
+
+.calEvents {
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  flex: 1;
+  font-weight: 400; }
+
+.calEvent {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex; }
+  .calEvent:not(:last-child) {
+    margin-bottom: 1.25vmin; }
+
+.calTime {
+  color: #000;
+  letter-spacing: 0.25vmin;
+  margin-right: 2.5vmin; }
+
+.calContent {
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  flex: 1; }
+  .calContent div:nth-child(1) {
+    letter-spacing: 0.25vmin; }
+  .calContent div:nth-child(2) {
+    font-size: 2vmin;
+    line-height: 2.5vmin; }
+
+.centerChildrenH, .page, #pageIndicators {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center; }
+
+.centerChildrenV {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center; }
+
+.animate, .page, #pageIndicators > div {
+  -webkit-transition: all linear 1.0s;
+  -moz-transition: all linear 1.0s;
+  transition: all linear 1.0s; }
+
+.booking {
+  position: relative;
+  width: 100%;
+  color: #000;
+  background-color: #FFF;
+  overflow: hidden;
+  opacity: 1;
+  -webkit-border-radius: 0.7vmin;
+  -moz-border-radius: 0.7vmin;
+  border-radius: 0.7vmin;
+  -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+  margin-bottom: 0.6vmin;
+  /* Animations */ }
+  .booking h1 {
+    padding: 0.7vmin;
+    font-size: 2.4vmin;
+    line-height: 2.4vmin;
+    color: #FFF;
+    background-color: #73B532;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .booking > div {
+    padding: 0.7vmin;
+    font-size: 2vmin; }
+  .booking .time {
+    float: left;
+    width: 13vmin; }
+    .booking .time > span {
+      font-size: 1.4vmin;
+      color: #999; }
+  .booking .location {
+    display: table-cell; }
+  .booking .locationImage {
+    line-height: 0;
+    padding: 0;
+    margin: 0; }
+    .booking .locationImage > img {
+      width: 100%; }
+  .booking.ng-enter {
+    max-height: 0;
+    -webkit-transition: 2s linear all;
+    -moz-transition: 2s linear all;
+    transition: 2s linear all; }
+  .booking.ng-enter-active {
+    max-height: 520px; }
+  .booking.ng-leave {
+    opacity: 1;
+    -webkit-transition: 1s linear all;
+    -moz-transition: 1s linear all;
+    transition: 1s linear all; }
+  .booking.ng-leave-active {
+    opacity: 0; }
+
+body {
+  background-color: #000;
+  overflow: hidden; }
+
+/* ---- Indicator ---- */
+#pageIndicators {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 99%;
+  bottom: 0;
+  overflow: hidden; }
+  #pageIndicators > div {
+    -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+    -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+    box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+    width: 3vmin;
+    height: 100%;
+    display: inline-block;
+    margin: 0;
+    background-color: #FFF;
+    border: 1px solid #AAA;
+    border-width-bottom: 0; }
+    #pageIndicators > div.active {
+      background-color: #73B532; }
+    #pageIndicators > div.visited {
+      opacity: 0.4;
+      background-color: transparent; }
+
+#statusIndicators {
+  position: absolute;
+  left: 1px;
+  bottom: 1px;
+  line-height: 0; }
+  #statusIndicators > div {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin-right: 2px;
+    background-color: #DDD; }
+  #statusIndicators > div.noConnection {
+    background-color: #FBB; }
+
+/* ---- Title ---- */
+.title {
+  margin: 0.5vmin 1.5vmin; }
+  .title h1 {
+    font-size: 2.4vmin;
+    line-height: 2.4vmin; }
+  .title p {
+    font-size: 2vmin; }
+  .title img {
+    width: 100%; }
+
+/* ---- Testing --- */
 #rect169 {
   position: absolute;
   left: 0;
@@ -89,11 +507,10 @@ a  { color: #000; text-decoration: none; }
   bottom: 0;
   z-index: 1001;
   opacity: 0.2;
-  background: url('http://placehold.it/160x90') no-repeat center top;
+  background: url("http://placehold.it/160x90") no-repeat center top;
   -webkit-background-size: contain;
   -moz-background-size: contain;
-  background-size: contain;
-}
+  background-size: contain; }
 
 #rect1610 {
   position: absolute;
@@ -103,393 +520,9 @@ a  { color: #000; text-decoration: none; }
   bottom: 0;
   z-index: 1001;
   opacity: 0.2;
-  background: url('http://placehold.it/160x100') no-repeat center top;
+  background: url("http://placehold.it/160x100") no-repeat center top;
   -webkit-background-size: contain;
   -moz-background-size: contain;
-  background-size: contain;
-}
+  background-size: contain; }
 
-
-/* ---- Page ---- */
-
-.page {
-  position: absolute;
-  left: 0;
-  width: 98%;
-  top: 1%;
-  bottom: 4%;
-
-  padding: 1%;
-  overflow: hidden;
-}
-
-.page img {
-  -webkit-flex-shrink: 0;
-  -moz-flex-shrink: 0;
-  flex-shrink: 0;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.page.ng-enter {
-  -webkit-transform: perspective(1000) rotateY(00deg) rotateZ(95deg);
-  -webkit-transform-origin: 0% 0%;
-}
-.page.ng-enter-active {
-  -webkit-transform: perspective(1000) rotateY(0) rotateZ(0);
-  -webkit-transform-origin: 0% 0%;
-}
-.page.ng-leave {
-  -webkit-transform: perspective(1000) scale(1, 1) rotateZ(0deg);
-  -webkit-transform-origin: 0% 0%;
-}
-.page.ng-leave-active {
-  -webkit-transform: perspective(1000) scale(0.2, 0.2) rotateZ(-95deg);
-  -webkit-transform-origin: 0% 0%;
-}
-
-/* ---- Indicator ---- */
-
-#indicators {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 96%;
-  bottom: 0;
-}
-
-#indicators > div {
-  display: inline-block;
-  width: 3%;
-  margin: 0 1% 1% 1%;
-  background-color: #fff;
-  border: 1px solid #aaa;
-}
-
-#indicators > div.active {
-  background-color: #693;
-}
-
-#indicators > div.visited {
-  background-color: #9B6;
-}
-
-#statusIndicators {
-  position: absolute;
-  left: 1px;
-  bottom: 1px;
-  line-height: 0;
-}
-
-#statusIndicators > div {
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  margin-right: 2px;
-  background-color: lightgray;
-}
-
-#statusIndicators > div.noConnection {
-  background-color: red;
-}
-
-
-/* ---- Title ---- */
-
-.title {
-  margin: 0 1.5% 3% 1.5%;
-  padding: 5px;
-}
-
-.title p {
-  margin: 0;
-  padding: 5px;
-  font-size: 80%;
-  line-height: 100%;
-}
-
-.title img {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-.title h1 {
-  margin: 0;
-  padding: 5px;
-  font-size: 100%;
-  line-height: 100%;
-  text-transform: uppercase;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-
-/* ---- Booking ---- */
-
-.booking {
-  width: 100%;
-  color: #FFF;
-  margin-bottom: 10px;
-  overflow: hidden;
-  border: 1px solid #999;
-}
-
-.booking table {
-  width: 100%;
-}
-
-.booking td {
-  margin: 0;
-}
-
-.bookingCustomer {
-  font-size: 100%;
-  line-height: 100%;
-  text-transform: uppercase;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  
-  padding: 5px;
-  background-color: #693;
-}
-
-.bookingTime {
-  width: 25%;
-  font-size: 80%;
-  line-height: 100%;
-  padding: 5px;
-  background-color: #8A5;
-}
-
-.bookingEndTime {
-  text-align: right;
-}
-
-.bookingRoom {
-  font-size: 100%;
-  line-height: 100%;
-  padding: 5px;
-  background-color: #9B6;
-}
-
-.bookingRoomImg {
-  font-size: 1%;
-  line-height: 1%;
-  padding: 0;
-}
-
-.bookingRoomImg img {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-/* Booking animation */
-
-.booking.ng-enter {
-  max-height: 0;
-  -webkit-transition: 2s linear all;
-  -moz-transition: 2s linear all;
-  transition: 2s linear all;
-}
-.booking.ng-enter-active {
-  max-height: 520px;
-}
-
-.booking.ng-leave {
-  opacity: 1;
-  -webkit-transition: 1s linear all;
-  -moz-transition: 1s linear all;
-  transition: 1s linear all;
-}
-.booking.ng-leave-active {
-  opacity: 0;
-}
-
-
-/* ---- Calendar ---- */
-
-.calendar {
-  position: absolute;
-  top: 0;
-  left: 3%;
-  right: 3%;
-
-  border: 1px solid #aaa;
-  background-image: url('../img/calendar-background.png');
-  -webkit-box-shadow: 0 0 8px -3px #000;
-  -moz-box-shadow:    0 0 8px -3px #000;
-  box-shadow:         0 0 8px -3px #000;
-  opacity: 1;
-
-  color: #fff;
-  text-rendering: optimizelegibility;
-  font-weight: 900;
-  font-size: 1.8vw;
-  line-height: 1.8vw;
-  
-  -webkit-animation: calendarAnim 16s;
-  animation: calendarAnim 16s;
-}
-
-@-webkit-keyframes calendarAnim
-{
-  0%   {top: 0; bottom: auto;}
-  65%  {top: 0; bottom: auto;}
-  66%  {top: auto; bottom: 0;}
-  100% {top: auto; bottom: 0;}
-}
-@keyframes calendarAnim
-{
-  0%   {top: 0; bottom: auto;}
-  65%  {top: 0; bottom: auto;}
-  66%  {top: -100%; bottom: 0;}
-  100% {top: -100%; bottom: 0;}
-}
-
-.acalendar.ng-hide-add, .acalendar.ng-hide-remove {
-  -webkit-transition: all linear 0.5s;
-  transition: all linear 0.5s;
-  display: block!important;
-}
-.acalendar.ng-hide-add.ng-hide-add-active, .acalendar.ng-hide-remove {
-  opacity: 0;
-}
-.acalendar.ng-hide-add, .acalendar.ng-hide-remove.ng-hide-remove-active {
-  opacity: 1;
-}
-
-.calHeader {
-  margin: 0;
-  padding: 1%;
-  text-align: center;
-  text-shadow: 0px 0px 2px #555;
-}
-
-.calDay {
-  padding: 1% 1.5%;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: flex;
-}
-
-.calDay:not(:first-child) {
-  padding-top: 1%;
-  -moz-box-shadow:    0 5px 10px   0px #000 inset;
-  -webkit-box-shadow: 0 5px 10px   0px #000 inset;
-  -o-box-shadow:      0 5px 10px -10px #000 inset;
-  -ms-box-shadow:     0 5px 10px -10px #000 inset;
-  box-shadow:         0 5px 10px -10px #000 inset;
-}
-
-.calDate {
-  width: 7%;
-  -webkit-align-self: flex-start;
-  align-self: flex-start;
-
-  text-transform: uppercase;
-  background-color: rgba(255,255,255,0.5);
-  color: #000;
-  padding: 0.15%;
-  margin-right: 2%;
-  text-align: center;
-
-  -webkit-box-shadow: 0 0 8px -3px #000;
-  -moz-box-shadow:    0 0 8px -3px #000;
-  box-shadow:         0 0 8px -3px #000;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-
-.calDate div:nth-child(1) {
-  font-size: 2.0vw;
-  line-height: 2.1vw;
-  color: #2A5F21;
-}
-
-.calDate div:nth-child(2) {
-  font-size: 1.0vw;
-  line-height: 1.3vw;
-}
-
-.calDate .sunday {
-  color: #a00;
-}
-
-.calEvents {
-  -webkit-flex: 1;
-  flex: 1;
-  font-weight: 400;
-}
-
-.calEvent {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: flex;
-}
-
-.calEvent:not(:last-child) {
-  margin-bottom: 1.5%;
-}
-
-.calTime {
-  margin-right: 2%;
-
-  text-transform: uppercase;
-  color: #fff;
-  font-size: 1.5vw;
-  line-height: 1.9vw;
-  text-shadow: 0px 0px 2px #555;
-  letter-spacing: 2px;
-}
-
-.calContent {
-  -webkit-flex: 1;
-  flex: 1;
-}
-
-.calContent div:nth-child(1) {
-  text-transform: uppercase;
-  text-shadow: 0px 0px 2px #555;
-  letter-spacing: 1px;
-}
-
-.calContent div:nth-child(2) {
-  font-size: 1.5vw;
-  line-height: 1.9vw;
-  text-shadow: 0px 0px 2px #555;
-}
-
-
-/* ---- Welcome ---- */
-
-.welcome {
-}
-
-/* ---- Bibeln.se ---- */
-
-.bibelnSe {
-}
-
-.bibelnSe .poetry {
-  font-style: italic;
-}
-.bibelnSe .line {
-}
-
-
-.whiteCard {
-  margin: 2% 5%;
-  padding: 5%;
-  background-color: #FFF;
-  background: url('../img/calendar-background.png');
-  -webkit-box-shadow: 0px 2px 5px 0px #999;
-  -moz-box-shadow:    0px 2px 5px 0px #999;
-  box-shadow:         0px 2px 5px 0px #999;
-
-  text-align: center;
-  color: white;
-  text-shadow: 0px 0px 4px #000;
-}
+/*# sourceMappingURL=app.css.map */

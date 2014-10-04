@@ -15,50 +15,39 @@
   <script type='text/javascript' src="./assets/js/vendor/angular-sanitize.js"></script>
 </head>
 <body ng-app="orbicularApp">
-<!--  <div id="rect1610"></div> -->
+  <div id="content">
+<!--    <div id="rect1610"></div> -->
 
-  <div id="pagePanel" ng-controller="PageController">
-    <div ng-repeat="page in pages" class="page animate centerChildrenH" ng-class="{centerChildrenV: page.centerVertically}">
-      <div ng-include="page.view"></div>
-    </div>
-    <div id="indicators" class="centerChildrenH">
-      <div ng-repeat="ind in pageIndicators" class="boxShadowLight animate" ng-class="{active: ind.state == 1, visited: ind.state == 2}"></div>
-    </div>
-  </div>
-
-  <div id="sidePanelBackground" class="boxShadowLight"></div>
-  <div id="sidePanel">
-    <div class="title" ng-controller="TimeController">
-      <p style="float: right;">{{date}} {{time}}</p>
-      <p>Välkommen till</p>
-      <img src="./assets/img/logotype.png" atl="The logotype">
-    </div>
-
-    <div ng-controller="BookingController">
-      <div ng-repeat="b in bookings" class="booking boxShadowLight">
-        <table cellspacing="0">
-          <tbody>
-            <tr><td class="bookingCustomer" colspan="2">{{b.customerName}}</td></tr>
-            <tr>
-              <td class="bookingTime">{{b.startTime | time}}</td>
-              <td class="bookingRoom" rowspan="2">{{locationName(b)}}</td>
-            </tr>
-            <tr>
-              <td class="bookingTime bookingEndTime">{{b.endTime | time}}</td>
-            </tr>
-<!--            <tr ng-show="{{roomImageUrl(b) != ''}}">
-              <td class="bookingRoomImg" colspan="2">
-                <img ng-src="{{roomImageUrl(b)}}"/>
-              </td>
-            </tr> -->
-          </tbody>
-        </table>
+    <div id="pagePanel" ng-controller="PageController">
+      <div ng-repeat="page in pages" class="page" ng-class="{centerChildrenV: page.centerVertically}">
+        <div ng-include="page.view"></div>
+      </div>
+      <div id="pageIndicators">
+        <div ng-repeat="ind in pageIndicators" ng-class="{active: ind.state == 1, visited: ind.state == 2}"></div>
       </div>
     </div>
-  </div>
 
-  <div id="statusIndicators" ng-controller="StatusController">
-    <div ng-repeat="st in status" ng-class="{noConnection: !st.hasConnection}"></div>
+    <div id="sidePanelBackground"></div>
+    <div id="sidePanel">
+      <div class="title" ng-controller="TimeController">
+        <p style="float: right; color: #999">{{date}} {{time}}</p>
+        <h1>Välkommen till</h1>
+        <img src="./assets/img/logotype.png" atl="The logotype">
+      </div>
+
+      <div ng-controller="BookingController">
+        <div ng-repeat="b in bookings" class="booking">
+          <h1>{{ b.customerName }}</h1>
+          <div class="time">{{ b.startTime | time }} - {{ b.endTime | time }}</div>
+          <div class="location" ng-bind-html="b.location.text | unsafe"></div>
+  <!--        <div class="locationImage" ng-show="directionImageUrl(b)"><img ng-src="{{ directionImageUrl(b) }}"/></div> -->
+        </div>
+      </div>
+    </div>
+
+    <div id="statusIndicators" ng-controller="StatusController">
+      <div ng-repeat="st in status" ng-class="{noConnection: !st.hasConnection}"></div>
+    </div>
   </div>
 
   <script type='text/javascript' src='./assets/js/main.js'></script>

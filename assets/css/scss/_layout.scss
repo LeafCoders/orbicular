@@ -1,0 +1,46 @@
+@import 'base';
+
+#content {
+ width: 100vw; 
+ height: #{100*$screen-height/$screen-width}vw;
+ max-height: 100vh;
+ max-width: #{100*$screen-width/$screen-height}vh;
+ margin: auto;
+ position: absolute;
+ top:0; bottom:0;
+ left:0; right:0;
+ 
+ background-color: #ddd;
+ background-image: url('../img/background.jpg');
+
+ font-family: 'Open Sans', sans-serif;
+}
+
+#pagePanel {
+  position: absolute;
+  left: 0;
+  right: 100% - $page-panel-size;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+#sidePanel {
+  position: absolute;
+  left: 100% - $side-panel-size;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 20;
+}
+
+#sidePanelBackground {
+  position: absolute;
+  left: 100% - $side-panel-size + 0.5%;
+  right: 0.5%;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: #FFF;
+  @include box-shadow(1);
+}

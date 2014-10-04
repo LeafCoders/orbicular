@@ -1,17 +1,16 @@
-﻿<div class="events">
-  <div class="calendar">
-    <div class="calDay" ng-repeat="day in page.item" ng-show="isTodayOrAfter(day.date)">
-      <div class="calDate">
-        <div>{{day.date | dayOfDate}}</div>
-        <div ng-class="{sunday: day.dayNumber == 6}">{{day.dayNumber | nameOfDay}}</div>
-      </div>
-      <div class="calEvents">
-        <div class="calEvent" ng-repeat="event in day.events">
-          <div class="calTime">{{event.startTime | time}}</div>
-          <div class="calContent">
-            <div>{{event.title}}</div>
-            <div>{{event.description}}</div>
-          </div>
+﻿<div class="calendar">
+  <h1>Kommande händelser</h1>
+  <div ng-class="{calDay: true, sunday: day.dayNumber == 7}" ng-repeat="day in page.item" ng-show="isTodayOrAfter(day.date)">
+    <div class="calDate">
+      <div>{{day.date | dayOfDate}}</div>
+      <div>{{day.dayNumber | nameOfDay}}</div>
+    </div>
+    <div class="calEvents">
+      <div class="calEvent" ng-repeat="event in day.events">
+        <div class="calTime">{{event.startTime | time}}</div>
+        <div class="calContent">
+          <div>{{event.title}}</div>
+          <div>{{event.description}}</div>
         </div>
       </div>
     </div>

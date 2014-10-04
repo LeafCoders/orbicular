@@ -1,0 +1,31 @@
+
+$screen-width: 1920;
+$screen-height: 1080;
+
+$page-panel-size: 75%;
+$side-panel-size: 100% - $page-panel-size - 0.2%;
+
+// Main
+$main-text-color: #000;
+$main-bg-color: #FFF;
+
+$light-text-color: #999;
+
+// Panel
+$panel-radius: 0.7vmin;
+$header-text-color: #FFF;
+$header-bg-color: #73B532;
+
+// Calendar
+$cal-text-size: 2.5vmin;
+$cal-text-color: $header-text-color;
+$cal-bg-color: $header-bg-color;
+
+// Booking
+$booking-text-size: 2.0vmin;
+$booking-text-color: $header-text-color;
+$booking-bg-color: $header-bg-color;
+
+// Welcome and BibelnSe
+$welcome-text-size: 2.5vmin;
+$welcome-text-color: $header-text-color;

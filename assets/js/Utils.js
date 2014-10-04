@@ -6,7 +6,7 @@
  *   request  Method to use when calling url: html, jsonp or get
  *   isArray  True if expected data is an array
  */
-function utilCreateFetchService(options) {
+function createFetchService(options) {
   orbicularApp.factory(options.name, function($resource, $http) {
     return {
       fetchData : function(index, params, callback) {
@@ -43,12 +43,12 @@ function utilCreateFetchService(options) {
 }
 
 /**
- * fetchService shall be a result of utilCreateFetchService()
+ * fetchService shall be a result of createFetchService()
  * minutesFetchDelay is the number of minutes between fetchServise is called
  * getParamsCallback shall return an array with params to add to fetch service
  * responseCallback shall be a method with two params: successfull and an array of data
  */
-function utilCreateUpdateTimer(fetchService, minutesFetchDelay, getParamsCallback, responseCallback) {
+function createUpdateTimer(fetchService, minutesFetchDelay, getParamsCallback, responseCallback) {
   var tick = function() {
     var params = getParamsCallback ? getParamsCallback() : [''];
     for (var i = 0; i < params.length; ++i) {
@@ -68,12 +68,12 @@ function utilCreateUpdateTimer(fetchService, minutesFetchDelay, getParamsCallbac
 }
 
 // Helper method to get text from a reference
-function utilGetReferenceText(ref, refObjFunc) {
+function getReferenceText(ref, refObjFunc) {
   if (ref.idRef != null) {
     if (ref.referredObject != null) {
       return refObjFunc(ref.referredObject);
     }
-  } else if ((ref.text != null)) {
+  } else if (ref.text != null) {
     return ref.text;
   }
 }

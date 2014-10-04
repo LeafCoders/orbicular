@@ -1,9 +1,13 @@
-﻿<div class="welcome whiteCard">
+﻿<div class="welcome">
   <h1>Welcome</h1>
-  <p>...</p>
+  <div>
+    <p>Welcome text here...</p>
+  </div>
 </div>
 
-<div class="bibelnSe whiteCard" ng-if="bibelnSe != ''">
+<div class="bibelnSe" ng-if="bibelnSe != ''">
   <h1>Dagens bibelord</h1>
-  <div ng-bind-html="bibelnSe"></div>
+  <div>
+    <p ng-bind-html="bibelnSe"></p>
+  </div>
 </div>

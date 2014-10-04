@@ -1,0 +1,63 @@
+@import 'constants';
+
+
+@mixin panel($size, $radius) {
+  color: $main-text-color;
+  background-color: $main-bg-color;
+  overflow: hidden;
+
+  opacity: 1;
+  
+  -webkit-border-radius: $radius*$panel-radius;
+  -moz-border-radius:    $radius*$panel-radius;
+  border-radius:         $radius*$panel-radius;
+
+  @include box-shadow(1);
+
+  h1 {
+    padding: 0.35*$size;
+    font-size: 1.2*$size;
+    line-height: 1.2*$size;
+    color: $header-text-color;
+    background-color: $header-bg-color;
+
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  & > div {
+    padding: 0.35*$size;
+    font-size: $size;
+  }
+}
+
+@mixin box-shadow($size) {
+  -webkit-box-shadow: 0px $size*0.25vmin $size*0.6vmin 0px #999;
+  -moz-box-shadow:    0px $size*0.25vmin $size*0.6vmin 0px #999;
+  box-shadow:         0px $size*0.25vmin $size*0.6vmin 0px #999;
+}
+
+.centerChildrenH {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+}
+
+.centerChildrenV {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+}
+
+.animate {
+  -webkit-transition: all linear 1.0s;
+  -moz-transition: all linear 1.0s;
+  transition: all linear 1.0s;
+}
+
