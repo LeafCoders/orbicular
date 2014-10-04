@@ -23,7 +23,6 @@
   padding-bottom: 0.5*$cal-text-size;
 
   -webkit-animation: calendarAnim 16s;
-  -moz-animation: calendarAnim 16s;
   animation: calendarAnim 16s;
 }
 
@@ -47,7 +46,6 @@
 
 .calDate {
   -webkit-align-self: flex-start;
-  -moz-align-self: flex-start;
   align-self: flex-start;
 
   @include box-shadow(1);
@@ -75,14 +73,12 @@
 
 .calEvents {
   -webkit-flex: 1;
-  -moz-flex: 1;
   flex: 1;
   font-weight: 400;
 }
 
 .calEvent {
   display: -webkit-flex;
-  display: -moz-flex;
   display: flex;
 
   &:not(:last-child) {
@@ -99,7 +95,6 @@
 
 .calContent {
   -webkit-flex: 1;
-  -moz-flex: 1;
   flex: 1;
 
   div:nth-child(1) {

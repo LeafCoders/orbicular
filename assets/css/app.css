@@ -14,7 +14,6 @@ embed, figure, figcaption, footer, header, hgroup, video {
   display: -moz-flex;
   display: flex;
   -webkit-justify-content: center;
-  -moz-justify-content: center;
   justify-content: center; }
 
 .centerChildrenV {
@@ -22,12 +21,10 @@ embed, figure, figcaption, footer, header, hgroup, video {
   display: -moz-flex;
   display: flex;
   -webkit-align-items: center;
-  -moz-align-items: center;
   align-items: center; }
 
 .animate, .page, #pageIndicators > div {
   -webkit-transition: all linear 1.0s;
-  -moz-transition: all linear 1.0s;
   transition: all linear 1.0s; }
 
 #content {
@@ -70,7 +67,6 @@ embed, figure, figcaption, footer, header, hgroup, video {
   z-index: 10;
   background-color: #FFF;
   -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
-  -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   box-shadow: 0px 0.25vmin 0.6vmin 0px #999; }
 
 .centerChildrenH, .page, #pageIndicators {
@@ -78,7 +74,6 @@ embed, figure, figcaption, footer, header, hgroup, video {
   display: -moz-flex;
   display: flex;
   -webkit-justify-content: center;
-  -moz-justify-content: center;
   justify-content: center; }
 
 .centerChildrenV {
@@ -86,12 +81,10 @@ embed, figure, figcaption, footer, header, hgroup, video {
   display: -moz-flex;
   display: flex;
   -webkit-align-items: center;
-  -moz-align-items: center;
   align-items: center; }
 
 .animate, .page, #pageIndicators > div {
   -webkit-transition: all linear 1.0s;
-  -moz-transition: all linear 1.0s;
   transition: all linear 1.0s; }
 
 .page {
@@ -103,44 +96,34 @@ embed, figure, figcaption, footer, header, hgroup, video {
   padding: 1%;
   overflow: hidden;
   -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
   /* Anumations */ }
   .page img {
     -webkit-flex-shrink: 0;
-    -moz-flex-shrink: 0;
     flex-shrink: 0;
     max-width: 100%;
     max-height: 100%;
     -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
-    -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
     box-shadow: 0px 0.25vmin 0.6vmin 0px #999; }
   .page.ng-enter {
-    -webkit-transform: perspective(1000) scale(0.2) rotateY(180deg);
+    -webkit-transform: perspective(1000px) scale(0.2) rotateY(180deg);
     -webkit-transform-origin: 50% 50%;
-    -moz-transform: perspective(1000) scale(0.2) rotateY(180deg);
-    -moz-transform-origin: 50% 50%;
-    transform: perspective(1000) scale(0.2) rotateY(180deg);
+    transform: perspective(1000px) scale(0.2) rotateY(180deg);
     transform-origin: 50% 50%; }
   .page.ng-enter-active {
-    -webkit-transform: perspective(1000) scale(1) rotateY(0);
+    -webkit-transform: perspective(1000px) scale(1) rotateY(0);
     -webkit-transform-origin: 50% 50%;
-    -moz-transform: perspective(1000) scale(1) rotateY(0);
-    -moz-transform-origin: 50% 50%;
-    transform: perspective(1000) scale(1) rotateY(0);
+    transform: perspective(1000px) scale(1) rotateY(0);
     transform-origin: 50% 50%; }
   .page.ng-leave {
-    -webkit-transform: perspective(1000) scale(1) rotateY(0);
+    -webkit-transform: perspective(1000px) scale(1) rotateY(0);
     -webkit-transform-origin: 50% 50%;
-    -moz-transform: perspective(1000) scale(1) rotateY(0);
-    -moz-transform-origin: 50% 50%;
-    transform: perspective(1000) scale(1) rotateY(0);
+    transform: perspective(1000px) scale(1) rotateY(0);
     transform-origin: 50% 50%; }
   .page.ng-leave-active {
-    -webkit-transform: perspective(1000) scale(0.2) rotateY(-180deg);
+    -webkit-transform: perspective(1000px) scale(0.2) rotateY(-180deg);
     -webkit-transform-origin: 50% 50%;
-    -moz-transform: perspective(1000) scale(0.2) rotateY(-180deg);
-    -moz-transform-origin: 50% 50%;
-    transform: perspective(1000) scale(0.2) rotateY(-180deg);
+    transform: perspective(1000px) scale(0.2) rotateY(-180deg);
     transform-origin: 50% 50%; }
 
 .centerChildrenH, .page, #pageIndicators {
@@ -148,7 +131,6 @@ embed, figure, figcaption, footer, header, hgroup, video {
   display: -moz-flex;
   display: flex;
   -webkit-justify-content: center;
-  -moz-justify-content: center;
   justify-content: center; }
 
 .centerChildrenV {
@@ -156,12 +138,10 @@ embed, figure, figcaption, footer, header, hgroup, video {
   display: -moz-flex;
   display: flex;
   -webkit-align-items: center;
-  -moz-align-items: center;
   align-items: center; }
 
 .animate, .page, #pageIndicators > div {
   -webkit-transition: all linear 1.0s;
-  -moz-transition: all linear 1.0s;
   transition: all linear 1.0s; }
 
 .welcome {
@@ -175,10 +155,8 @@ embed, figure, figcaption, footer, header, hgroup, video {
   overflow: hidden;
   opacity: 1;
   -webkit-border-radius: 1.05vmin;
-  -moz-border-radius: 1.05vmin;
   border-radius: 1.05vmin;
   -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
-  -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   text-align: center; }
   .welcome h1 {
@@ -207,10 +185,8 @@ embed, figure, figcaption, footer, header, hgroup, video {
   overflow: hidden;
   opacity: 1;
   -webkit-border-radius: 1.05vmin;
-  -moz-border-radius: 1.05vmin;
   border-radius: 1.05vmin;
   -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
-  -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   text-align: center; }
   .bibelnSe h1 {
@@ -239,7 +215,6 @@ embed, figure, figcaption, footer, header, hgroup, video {
   display: -moz-flex;
   display: flex;
   -webkit-justify-content: center;
-  -moz-justify-content: center;
   justify-content: center; }
 
 .centerChildrenV {
@@ -247,12 +222,10 @@ embed, figure, figcaption, footer, header, hgroup, video {
   display: -moz-flex;
   display: flex;
   -webkit-align-items: center;
-  -moz-align-items: center;
   align-items: center; }
 
 .animate, .page, #pageIndicators > div {
   -webkit-transition: all linear 1.0s;
-  -moz-transition: all linear 1.0s;
   transition: all linear 1.0s; }
 
 @-webkit-keyframes calendarAnim {
@@ -283,14 +256,11 @@ embed, figure, figcaption, footer, header, hgroup, video {
   overflow: hidden;
   opacity: 1;
   -webkit-border-radius: 1.05vmin;
-  -moz-border-radius: 1.05vmin;
   border-radius: 1.05vmin;
   -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
-  -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   padding-bottom: 1.25vmin;
   -webkit-animation: calendarAnim 16s;
-  -moz-animation: calendarAnim 16s;
   animation: calendarAnim 16s; }
   .calendar h1 {
     padding: 0.875vmin;
@@ -319,10 +289,8 @@ embed, figure, figcaption, footer, header, hgroup, video {
 
 .calDate {
   -webkit-align-self: flex-start;
-  -moz-align-self: flex-start;
   align-self: flex-start;
   -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
-  -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   width: 5vmin;
   background-color: #73B532;
@@ -341,13 +309,11 @@ embed, figure, figcaption, footer, header, hgroup, video {
 
 .calEvents {
   -webkit-flex: 1;
-  -moz-flex: 1;
   flex: 1;
   font-weight: 400; }
 
 .calEvent {
   display: -webkit-flex;
-  display: -moz-flex;
   display: flex; }
   .calEvent:not(:last-child) {
     margin-bottom: 1.25vmin; }
@@ -359,7 +325,6 @@ embed, figure, figcaption, footer, header, hgroup, video {
 
 .calContent {
   -webkit-flex: 1;
-  -moz-flex: 1;
   flex: 1; }
   .calContent div:nth-child(1) {
     letter-spacing: 0.25vmin; }
@@ -372,7 +337,6 @@ embed, figure, figcaption, footer, header, hgroup, video {
   display: -moz-flex;
   display: flex;
   -webkit-justify-content: center;
-  -moz-justify-content: center;
   justify-content: center; }
 
 .centerChildrenV {
@@ -380,12 +344,10 @@ embed, figure, figcaption, footer, header, hgroup, video {
   display: -moz-flex;
   display: flex;
   -webkit-align-items: center;
-  -moz-align-items: center;
   align-items: center; }
 
 .animate, .page, #pageIndicators > div {
   -webkit-transition: all linear 1.0s;
-  -moz-transition: all linear 1.0s;
   transition: all linear 1.0s; }
 
 .booking {
@@ -396,10 +358,8 @@ embed, figure, figcaption, footer, header, hgroup, video {
   overflow: hidden;
   opacity: 1;
   -webkit-border-radius: 0.7vmin;
-  -moz-border-radius: 0.7vmin;
   border-radius: 0.7vmin;
   -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
-  -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   margin-bottom: 0.6vmin;
   /* Animations */ }
@@ -432,14 +392,12 @@ embed, figure, figcaption, footer, header, hgroup, video {
   .booking.ng-enter {
     max-height: 0;
     -webkit-transition: 2s linear all;
-    -moz-transition: 2s linear all;
     transition: 2s linear all; }
   .booking.ng-enter-active {
     max-height: 520px; }
   .booking.ng-leave {
     opacity: 1;
     -webkit-transition: 1s linear all;
-    -moz-transition: 1s linear all;
     transition: 1s linear all; }
   .booking.ng-leave-active {
     opacity: 0; }
@@ -458,7 +416,6 @@ body {
   overflow: hidden; }
   #pageIndicators > div {
     -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
-    -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
     box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
     width: 3vmin;
     height: 100%;
@@ -509,7 +466,6 @@ body {
   opacity: 0.2;
   background: url("http://placehold.it/160x90") no-repeat center top;
   -webkit-background-size: contain;
-  -moz-background-size: contain;
   background-size: contain; }
 
 #rect1610 {
@@ -522,7 +478,6 @@ body {
   opacity: 0.2;
   background: url("http://placehold.it/160x100") no-repeat center top;
   -webkit-background-size: contain;
-  -moz-background-size: contain;
   background-size: contain; }
 
 /*# sourceMappingURL=app.css.map */

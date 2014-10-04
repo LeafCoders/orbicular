@@ -9,7 +9,6 @@
   opacity: 1;
   
   -webkit-border-radius: $radius*$panel-radius;
-  -moz-border-radius:    $radius*$panel-radius;
   border-radius:         $radius*$panel-radius;
 
   @include box-shadow(1);
@@ -33,7 +32,6 @@
 
 @mixin box-shadow($size) {
   -webkit-box-shadow: 0px $size*0.25vmin $size*0.6vmin 0px #999;
-  -moz-box-shadow:    0px $size*0.25vmin $size*0.6vmin 0px #999;
   box-shadow:         0px $size*0.25vmin $size*0.6vmin 0px #999;
 }
 
@@ -42,7 +40,6 @@
   display: -moz-flex;
   display: flex;
   -webkit-justify-content: center;
-  -moz-justify-content: center;
   justify-content: center;
 }
 
@@ -51,13 +48,10 @@
   display: -moz-flex;
   display: flex;
   -webkit-align-items: center;
-  -moz-align-items: center;
   align-items: center;
 }
 
 .animate {
   -webkit-transition: all linear 1.0s;
-  -moz-transition: all linear 1.0s;
   transition: all linear 1.0s;
 }
-

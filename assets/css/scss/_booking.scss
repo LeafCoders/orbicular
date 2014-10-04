@@ -36,7 +36,6 @@
   &.ng-enter {
     max-height: 0;
     -webkit-transition: 2s linear all;
-    -moz-transition: 2s linear all;
     transition: 2s linear all;
   }
   &.ng-enter-active {
@@ -45,7 +44,6 @@
   &.ng-leave {
     opacity: 1;
     -webkit-transition: 1s linear all;
-    -moz-transition: 1s linear all;
     transition: 1s linear all;
   }
   &.ng-leave-active {
