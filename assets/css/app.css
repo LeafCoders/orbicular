@@ -104,16 +104,16 @@ embed, figure, figcaption, footer, header, hgroup, video {
   overflow: hidden;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
-  backface-visibility: hidden img;
-    backface-visibility--webkit-flex-shrink: 0;
-    backface-visibility--moz-flex-shrink: 0;
-    backface-visibility-flex-shrink: 0;
-    backface-visibility-max-width: 100%;
-    backface-visibility-max-height: 100%;
-    backface-visibility--webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
-    backface-visibility--moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
-    backface-visibility-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   /* Anumations */ }
+  .page img {
+    -webkit-flex-shrink: 0;
+    -moz-flex-shrink: 0;
+    flex-shrink: 0;
+    max-width: 100%;
+    max-height: 100%;
+    -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+    -moz-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
+    box-shadow: 0px 0.25vmin 0.6vmin 0px #999; }
   .page.ng-enter {
     -webkit-transform: perspective(1000) scale(0.2) rotateY(180deg);
     -webkit-transform-origin: 50% 50%;
