@@ -1,6 +1,8 @@
 
 // Base url to Rosette server
-var rosetteBaseUrl = "http://yourhost.se/api/v1-snapshot/";
+var rosetteBaseUrl = "http://localhost:9000/api/v1-snapshot/";
+//var rosetteBaseUrl = "http://yourhost.se/api/v1-snapshot/";
+
 
 // Main angular application instance
 var orbicularApp = angular.module('orbicularApp', ['ngResource', 'ngAnimate', 'ngSanitize']);

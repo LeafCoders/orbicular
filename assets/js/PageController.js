@@ -7,13 +7,13 @@ var useEvents = true;
 var usePosters = true;
 var useBibelnSe = true;
 
-//createFetchService({ name: 'posterService', url: rosetteBaseUrl + 'posters', request: 'json', isArray: true });
-//createFetchService({ name: 'posterService', url: rosetteBaseUrl + 'posters?callback=JSON_CALLBACK', request: 'jsonp', isArray: true });
-createFetchService({ name: 'posterService', url: 'posters.json', request: 'json', isArray: true });
+createFetchService({ name: 'posterService', url: rosetteBaseUrl + 'posters', request: 'jsonp', isArray: true });
+//createFetchService({ name: 'posterService', url: rosetteBaseUrl + 'posters.json', request: 'json', isArray: true });
+//createFetchService({ name: 'posterService', url: 'posters.json', request: 'json', isArray: true });
 
-//createFetchService({ name: 'eventService', url: rosetteBaseUrl + 'eventWeeks', request: 'json', isArray: false });
-//createFetchService({ name: 'eventService', url: rosetteBaseUrl + 'eventWeeks?callback=JSON_CALLBACK', request: 'jsonp', isArray: false });
-createFetchService({ name: 'eventService', url: 'eventWeek.json', request: 'json', isArray: false });
+createFetchService({ name: 'eventService', url: rosetteBaseUrl + 'eventWeeks', request: 'jsonp', isArray: false });
+//createFetchService({ name: 'eventService', url: rosetteBaseUrl + 'eventWeeks.json', request: 'json', isArray: false });
+//createFetchService({ name: 'eventService', url: 'eventWeek.json', request: 'json', isArray: false });
 
 createFetchService({ name: 'bibelnSeService', url: 'http://www.bibeln.se/pren/syndikering.jsp', request: 'html' });
 
@@ -56,8 +56,8 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
       var week1 = new Date().getCurrentWeek(0);
       var week2 = new Date().getCurrentWeek(1);
       return [
-        '/' + week1.year + '-W' + week1.week,
-        '/' + week2.year + '-W' + week2.week
+        '/' + week1.year + '-W' + (week1.week < 10 ? '0' : '') + week1.week,
+        '/' + week2.year + '-W' + (week2.week < 10 ? '0' : '') + week2.week
       ];
     }, function(success, data, index) {
       statusService.set("event", success);
@@ -111,7 +111,6 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
   };
 
   var setupPagesToShow = function() {
-    console.log('Setup new pages:')
     activePage = null;
     pagesLeftToShow = [];
     var pageIndexCounter = 0;
@@ -137,7 +136,6 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
         showDuration: 15,
         item: eventDays
       });
-      console.log('- Eventdays: ' + eventDays.length)
     }
 
     if (usePosters) {
@@ -149,7 +147,6 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
           centerVertically: true,
           item: jQuery.extend({}, poster)
         });
-        console.log('- Posters: ' + postersFromService.length)
       });
     }
   };
@@ -160,7 +157,6 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
       resetIndicators();
     }
     if (pagesLeftToShow.length > 0) {
-      console.log('Preparing next page...')
       var lastPageIndex = activePage ? activePage.index : null;
       activePage = showNextPage();
       updateIndicators(lastPageIndex, activePage.index);
@@ -171,7 +167,6 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
       setTimeout(function() { $scope.halfDurationPassed = true; }, 500*showDuration);
     } else {
       // There are no pages to show at all. Wait for services to fetch new data
-      console.log('Waiting: 5 minutes for next refresh...')
       setTimeout(tick, 5*60*1000);
     }
   };

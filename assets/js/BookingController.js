@@ -5,9 +5,9 @@
 
 var useBookings = true
 
+createFetchService({ name: 'bookingService', url: rosetteBaseUrl + 'bookings', request: 'jsonp', isArray: true });
 //createFetchService({ name: 'bookingService', url: rosetteBaseUrl + 'bookings', request: 'json', isArray: true });
-//createFetchService({ name: 'bookingService', url: rosetteBaseUrl + 'bookings?callback=JSON_CALLBACK', request: 'jsonp', isArray: true });
-createFetchService({ name: 'bookingService', url: 'bookings.json', request: 'json', isArray: true });
+//createFetchService({ name: 'bookingService', url: 'bookings.json', request: 'json', isArray: true });
 
 function BookingController($scope, $http, $timeout, $window, bookingService, statusService) {
   $scope.bookings = [];
@@ -46,8 +46,6 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
   }
 
   function filterBookings(incomingBookings) {
-    console.log("incoming bookings: " + incomingBookings.length);
-
     // copy location name to location.text if there is an referenced location present
     for (var i = 0; i < incomingBookings.length; i++) {
       incomingBookings[i].location.text = getReferenceText(incomingBookings[i].location, function(location) { return location.name; })
@@ -60,7 +58,6 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
 
       // check that all neccessary values are present else remove booking
       if (!(incomingBookings[i].customerName && incomingBookings[i].startTime && incomingBookings[i].endTime)) {
-        console.log("Incoming booking lacking nesseccary data: " + incomingBookings[i].customerName);
         incomingBookings.splice(i,1);
         i--;
         continue;
@@ -69,13 +66,11 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
     }
 
     var now = new Date()
-    console.log("Current time:" + now);
 
     // concatenate upcoming/ongoing bookings for same customerName
 
     // loop through the bookings to find same customer
     for (var i = 0; i < incomingBookings.length; i++) {	
-      //console.log("Customer name: " + incomingBookings[i].customerName);
       var iStartTime = createDateObject(incomingBookings[i].startTime);
       var iEndTime = createDateObject(incomingBookings[i].endTime);
 
@@ -83,8 +78,6 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
 
         // first check if it is the same customer
         if (incomingBookings[i].customerName == incomingBookings[j].customerName) {
-          //console.log("Booking with same customer name found");
-
           // create date objects for the matching booking
           var jStartTime = createDateObject(incomingBookings[j].startTime);
           var jEndTime = createDateObject(incomingBookings[j].endTime);
@@ -100,8 +93,6 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
             if (jEndTime > iEndTime) {
               incomingBookings[i].endTime = incomingBookings[j].endTime;
             }	
-
-            console.log("Merged booking with same startTime");
 
             // remove the merged booking
             incomingBookings.splice(j, 1);
@@ -123,8 +114,6 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
             if (now > jStartTime && jEndTime > now) {
               incomingBookings[i].location.text += "<br>" + incomingBookings[j].location.text
             }
-
-            //console.log("Merged booking starting after current booking");
 
             // remove the merged booking
             incomingBookings.splice(j, 1);
@@ -160,8 +149,6 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
           var d = createDateObject(b.startTime);
           return c - d;
         });
-
-        console.log("Booking added: " + booking.customerName + ": " + booking.location.text);
       }
     });
   }
@@ -177,16 +164,13 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
         return true;
       } 
     }
-    console.log("Booking not among incoming bookings");
     return false;
-
   }
 
   function removeBookings(bookings) {
     for (var i = 0; i < $scope.bookings.length; i++) {
       if (!bookingInBookingsRetreived($scope.bookings[i], bookings)) {
         $scope.bookings.splice(i, 1);
-        console.log("Booking deleted: " + $scope.bookings[i].customerName);
       }  
     }
   }

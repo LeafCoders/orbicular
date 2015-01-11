@@ -20,7 +20,7 @@ function createFetchService(options) {
         } else {
           var api = null
           if (options.request == 'jsonp') {
-            var jsonCallback = (params ? '?' : '&') + 'callback=JSON_CALLBACK'; 
+            var jsonCallback = (options.url.indexOf('?') == -1 ? '?' : '&') + 'callback=JSON_CALLBACK'; 
             api = $resource(options.url + params + jsonCallback, {}, {
               fetch: { method: 'JSONP', isArray: options.isArray, timeout: 10000, cache: false }
             });
