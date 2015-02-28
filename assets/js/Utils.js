@@ -68,13 +68,11 @@ function createUpdateTimer(fetchService, minutesFetchDelay, getParamsCallback, r
 }
 
 // Helper method to get text from a reference
-function getReferenceText(ref, refObjFunc) {
-  if (ref.idRef != null) {
-    if (ref.referredObject != null) {
-      return refObjFunc(ref.referredObject);
-    }
-  } else if (ref.text != null) {
-    return ref.text;
+function getReferenceOrText(obj, refObjFunc) {
+  if (obj.ref != null) {
+    return refObjFunc(obj.ref);
+  } else if (obj.text != null) {
+    return obj.text;
   }
 }
 

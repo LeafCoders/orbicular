@@ -4,12 +4,12 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 1.5%;
-  bottom: 1.5%;
+  top: 0.5%;
+  bottom: 0.5%;
   @extend .animate;
   @extend .centerChildrenH;
  
-  padding: 1%;
+  padding: 0.5%;
   overflow: hidden;
 
   -webkit-backface-visibility: hidden;
@@ -23,29 +23,22 @@
     @include box-shadow(1);
   }
 
-  /* Anumations */
+  /* Animations */
   &.ng-enter {
-    -webkit-transform: perspective(1000px) scale(0.2) rotateY(180deg);
-    -webkit-transform-origin: 50% 50%;
-    transform: perspective(1000px) scale(0.2) rotateY(180deg);
-    transform-origin: 50% 50%;
+    opacity: 0.0;
   }
   &.ng-enter-active {
-    -webkit-transform: perspective(1000px) scale(1.0) rotateY(0);
-    -webkit-transform-origin: 50% 50%;
-    transform: perspective(1000px) scale(1.0) rotateY(0);
-    transform-origin: 50% 50%;
+    opacity: 1.0;
   }
   &.ng-leave {
-    -webkit-transform: perspective(1000px) scale(1.0) rotateY(0);
-    -webkit-transform-origin: 50% 50%;
-    transform: perspective(1000px) scale(1.0) rotateY(0);
-    transform-origin: 50% 50%;
+    opacity: 1.0;
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
   }
   &.ng-leave-active {
-    -webkit-transform: perspective(1000px) scale(0.2) rotateY(-180deg);
-    -webkit-transform-origin: 50% 50%;
-    transform: perspective(1000px) scale(0.2) rotateY(-180deg);
-    transform-origin: 50% 50%;
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
   }
+  
 }

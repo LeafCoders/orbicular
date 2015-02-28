@@ -5,7 +5,7 @@
 
 var useBookings = true
 
-createFetchService({ name: 'bookingService', url: rosetteBaseUrl + 'bookings', request: 'jsonp', isArray: true });
+createFetchService({ name: 'bookingService', url: rosetteBaseUrl + 'bookings?onlyActiveToday=true', request: 'jsonp', isArray: true });
 //createFetchService({ name: 'bookingService', url: rosetteBaseUrl + 'bookings', request: 'json', isArray: true });
 //createFetchService({ name: 'bookingService', url: 'bookings.json', request: 'json', isArray: true });
 
@@ -14,11 +14,10 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
   
   // TODO: Doesn't work when locations are combined...
   $scope.directionImageUrl = function(booking) {
-    var url = getReferenceText(booking.location, function(location) {
-      return getReferenceText(location.directionImage, function(upload) {
-        return upload.fileUrl;
-      });
-    });
+    var url = '';
+    if (booking.location && booking.location.ref) {
+      url = booking.location.ref.directionImage ? booking.location.ref.directionImage.fileUrl : '';
+    }
     if (url.indexOf('http') == 0) {
       return url;
     }
@@ -48,21 +47,7 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
   function filterBookings(incomingBookings) {
     // copy location name to location.text if there is an referenced location present
     for (var i = 0; i < incomingBookings.length; i++) {
-      incomingBookings[i].location.text = getReferenceText(incomingBookings[i].location, function(location) { return location.name; })
-    }
-
-    // remove passed bookings, bookings for coming days and 
-    // bookings missing customerName or start/end time
-
-    for (var i = 0; i < incomingBookings.length; i++) {
-
-      // check that all neccessary values are present else remove booking
-      if (!(incomingBookings[i].customerName && incomingBookings[i].startTime && incomingBookings[i].endTime)) {
-        incomingBookings.splice(i,1);
-        i--;
-        continue;
-      }
-
+      incomingBookings[i].location.text = getReferenceOrText(incomingBookings[i].location, function(location) { return location.name; })
     }
 
     var now = new Date()
@@ -153,8 +138,7 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
     });
   }
 
-  function bookingInBookingsRetreived(booking,bookings) {
-
+  function bookingInBookingsRetreived(booking, bookings) {
     for (var i = 0; i < bookings.length; i++) {
       // check if booking is identical
       if (bookings[i].customerName === booking.customerName &&
@@ -226,12 +210,8 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
   }
 
   function tick() {
-    var now = new Date();
-
     // Has any bookings been fetched from service?
     if (bookingsFromService) {
-      // remove ended bookings and bookings for coming days
-      // and concatenate adjacent bookings for same customer
       var incomingBookings = filterBookings(bookingsFromService);
 
       // add incoming filtered bookings not already present

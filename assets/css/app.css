@@ -24,8 +24,8 @@ embed, figure, figcaption, footer, header, hgroup, video {
   align-items: center; }
 
 .animate, .page, #pageIndicators > div {
-  -webkit-transition: all linear 1.0s;
-  transition: all linear 1.0s; }
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s; }
 
 #content {
   width: 100vw;
@@ -84,20 +84,20 @@ embed, figure, figcaption, footer, header, hgroup, video {
   align-items: center; }
 
 .animate, .page, #pageIndicators > div {
-  -webkit-transition: all linear 1.0s;
-  transition: all linear 1.0s; }
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s; }
 
 .page {
   position: absolute;
   left: 0;
   right: 0;
-  top: 1.5%;
-  bottom: 1.5%;
-  padding: 1%;
+  top: 0.5%;
+  bottom: 0.5%;
+  padding: 0.5%;
   overflow: hidden;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  /* Anumations */ }
+  /* Animations */ }
   .page img {
     -webkit-flex-shrink: 0;
     flex-shrink: 0;
@@ -106,25 +106,17 @@ embed, figure, figcaption, footer, header, hgroup, video {
     -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
     box-shadow: 0px 0.25vmin 0.6vmin 0px #999; }
   .page.ng-enter {
-    -webkit-transform: perspective(1000px) scale(0.2) rotateY(180deg);
-    -webkit-transform-origin: 50% 50%;
-    transform: perspective(1000px) scale(0.2) rotateY(180deg);
-    transform-origin: 50% 50%; }
+    opacity: 0.0; }
   .page.ng-enter-active {
-    -webkit-transform: perspective(1000px) scale(1) rotateY(0);
-    -webkit-transform-origin: 50% 50%;
-    transform: perspective(1000px) scale(1) rotateY(0);
-    transform-origin: 50% 50%; }
+    opacity: 1.0; }
   .page.ng-leave {
-    -webkit-transform: perspective(1000px) scale(1) rotateY(0);
-    -webkit-transform-origin: 50% 50%;
-    transform: perspective(1000px) scale(1) rotateY(0);
-    transform-origin: 50% 50%; }
+    opacity: 1.0;
+    -webkit-transform: scale(1);
+    transform: scale(1); }
   .page.ng-leave-active {
-    -webkit-transform: perspective(1000px) scale(0.2) rotateY(-180deg);
-    -webkit-transform-origin: 50% 50%;
-    transform: perspective(1000px) scale(0.2) rotateY(-180deg);
-    transform-origin: 50% 50%; }
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9); }
 
 .centerChildrenH, .page, #pageIndicators {
   display: -webkit-flex;
@@ -141,8 +133,8 @@ embed, figure, figcaption, footer, header, hgroup, video {
   align-items: center; }
 
 .animate, .page, #pageIndicators > div {
-  -webkit-transition: all linear 1.0s;
-  transition: all linear 1.0s; }
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s; }
 
 .welcome {
   position: absolute;
@@ -225,8 +217,8 @@ embed, figure, figcaption, footer, header, hgroup, video {
   align-items: center; }
 
 .animate, .page, #pageIndicators > div {
-  -webkit-transition: all linear 1.0s;
-  transition: all linear 1.0s; }
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s; }
 
 @-webkit-keyframes calendarAnim {
   0% {
@@ -347,8 +339,8 @@ embed, figure, figcaption, footer, header, hgroup, video {
   align-items: center; }
 
 .animate, .page, #pageIndicators > div {
-  -webkit-transition: all linear 1.0s;
-  transition: all linear 1.0s; }
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s; }
 
 .booking {
   position: relative;
@@ -420,7 +412,7 @@ body {
     width: 3vmin;
     height: 100%;
     display: inline-block;
-    margin: 0;
+    margin: 0 0.2vmin;
     background-color: #FFF;
     border: 1px solid #AAA;
     border-width-bottom: 0; }
@@ -428,7 +420,7 @@ body {
       background-color: #73B532; }
     #pageIndicators > div.visited {
       opacity: 0.4;
-      background-color: transparent; }
+      background-color: #555; }
 
 #statusIndicators {
   position: absolute;

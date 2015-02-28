@@ -7,7 +7,7 @@ var useEvents = true;
 var usePosters = true;
 var useBibelnSe = true;
 
-createFetchService({ name: 'posterService', url: rosetteBaseUrl + 'posters', request: 'jsonp', isArray: true });
+createFetchService({ name: 'posterService', url: rosetteBaseUrl + 'posters?onlyActive=true', request: 'jsonp', isArray: true });
 //createFetchService({ name: 'posterService', url: rosetteBaseUrl + 'posters.json', request: 'json', isArray: true });
 //createFetchService({ name: 'posterService', url: 'posters.json', request: 'json', isArray: true });
 
@@ -29,17 +29,13 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
     return htmlCode;
   };
 
-  $scope.isTodayOrAfter = function (timeString) {
-    return true; //TODO: Use this inproduction: new Date(timeString.substr(0, 10)) >= new Date().setHours(0,0,0,0);
-  };
-
 
   /**
-   * Get posters each 3 hours
+   * Get posters each 60 minutes
    */
   var postersFromService = [];
   if (usePosters) {
-    createUpdateTimer(posterService, 3*60, null, function(success, dataArray) {
+    createUpdateTimer(posterService, 60, null, function(success, dataArray) {
       statusService.set("poster", success);
       if (success) {
         postersFromService = dataArray;
@@ -48,11 +44,11 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
   }
 
   /**
-   * Get events each 30 minutes
+   * Get events each 60 minutes
    */
   var eventsFromService = [];
   if (useEvents) {
-    createUpdateTimer(eventService, 30, function() {
+    createUpdateTimer(eventService, 60, function() {
       var week1 = new Date().getCurrentWeek(0);
       var week2 = new Date().getCurrentWeek(1);
       return [
