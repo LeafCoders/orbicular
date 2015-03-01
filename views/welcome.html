@@ -1,13 +1,9 @@
 ﻿<div class="welcome">
-  <h1>Welcome</h1>
-  <div>
-    <p>Welcome text here...</p>
-  </div>
+  <h1>Välkommen</h1>
+  <div ng-bind-html="welcomeContent"></div>
 </div>
 
-<div class="bibelnSe" ng-if="bibelnSe != ''">
+<div class="bibelnSe" ng-if="!!bibelnSe">
   <h1>Dagens bibelord</h1>
-  <div>
-    <p ng-bind-html="bibelnSe"></p>
-  </div>
+  <div ng-bind-html="bibelnSe"></div>
 </div>

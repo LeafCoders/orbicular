@@ -39,3 +39,5 @@
   // Start timer
   setTimeout(function() { timeTick() }, 1000);
 }
+
+orbicularApp.controller('TimeController', TimeController);

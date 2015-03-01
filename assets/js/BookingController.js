@@ -3,11 +3,7 @@
  * The list is rotating so that the lowest item is moved to the top of the list.
 */
 
-var useBookings = true
-
-createFetchService({ name: 'bookingService', url: rosetteBaseUrl + 'bookings?onlyActiveToday=true', request: 'jsonp', isArray: true });
-//createFetchService({ name: 'bookingService', url: rosetteBaseUrl + 'bookings', request: 'json', isArray: true });
-//createFetchService({ name: 'bookingService', url: 'bookings.json', request: 'json', isArray: true });
+createFetchService({ name: 'bookingService', url: settings.rosetteBaseUrl + 'bookings?onlyActiveToday=true', request: 'jsonp', isArray: true });
 
 function BookingController($scope, $http, $timeout, $window, bookingService, statusService) {
   $scope.bookings = [];
@@ -29,7 +25,7 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
    * Get bookings each 30 minutes
    */
   var bookingsFromService = null;
-  if (useBookings) {
+  if (settings.showBookings) {
     createUpdateTimer(bookingService, 30, null, function(success, dataArray) {
       statusService.set("booking", success);
       if (success) {
@@ -231,3 +227,5 @@ function BookingController($scope, $http, $timeout, $window, bookingService, sta
   // Start timer
   setTimeout(tick, 1000);
 }
+
+orbicularApp.controller('BookingController', BookingController);

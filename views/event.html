@@ -1,9 +1,9 @@
 ﻿<div class="calendar">
   <h1>Kommande händelser</h1>
-  <div ng-class="{calDay: true, sunday: day.dayNumber == 7}" ng-repeat="day in page.item" ng-show="isTodayOrAfter(day.date)">
+  <div ng-class="{calDay: true, sunday: eventDayNumber(day.dayNumber) == 7}" ng-repeat="day in page.item" ng-show="isTodayOrAfter(day.date)">
     <div class="calDate">
       <div>{{day.date | dayOfDate}}</div>
-      <div>{{day.dayNumber | nameOfDay}}</div>
+      <div>{{eventDayNumber(day.dayNumber) | nameOfDay}}</div>
     </div>
     <div class="calEvents">
       <div class="calEvent" ng-repeat="event in day.events">

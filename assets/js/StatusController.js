@@ -22,3 +22,5 @@ function StatusController($scope, statusService) {
     $scope.status = status;
   }, true);
 }
+
+orbicularApp.controller('StatusController', StatusController);

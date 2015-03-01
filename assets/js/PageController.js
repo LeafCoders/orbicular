@@ -3,17 +3,13 @@
  * Each page will be displayed as long as the duration is specified for the page.
  */
 
-var useEvents = true;
-var usePosters = true;
-var useBibelnSe = true;
+createFetchService({ name: 'posterService', url: settings.rosetteBaseUrl + 'posters?onlyActive=true', request: 'jsonp', isArray: true });
 
-createFetchService({ name: 'posterService', url: rosetteBaseUrl + 'posters?onlyActive=true', request: 'jsonp', isArray: true });
-//createFetchService({ name: 'posterService', url: rosetteBaseUrl + 'posters.json', request: 'json', isArray: true });
-//createFetchService({ name: 'posterService', url: 'posters.json', request: 'json', isArray: true });
-
-createFetchService({ name: 'eventService', url: rosetteBaseUrl + 'eventWeeks', request: 'jsonp', isArray: false });
-//createFetchService({ name: 'eventService', url: rosetteBaseUrl + 'eventWeeks.json', request: 'json', isArray: false });
-//createFetchService({ name: 'eventService', url: 'eventWeek.json', request: 'json', isArray: false });
+if (settings.oldEventsServerUrl) {
+  createFetchService({ name: 'eventService', url: settings.oldEventsServerUrl, request: 'json', isArray: false });
+} else {
+  createFetchService({ name: 'eventService', url: settings.rosetteBaseUrl + 'eventWeeks', request: 'jsonp', isArray: false });
+}
 
 createFetchService({ name: 'bibelnSeService', url: 'http://www.bibeln.se/pren/syndikering.jsp', request: 'html' });
 
@@ -24,17 +20,26 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
   $scope.pages = [];
   $scope.pageIndicators = [];
   $scope.halfDurationPassed = false;
+  $scope.welcomeContent = settings.welcomeContent;
 
-  $scope.renderHtml = function (htmlCode) {
-    return htmlCode;
+  $scope.isTodayOrAfter = function (timeString) {
+    return new Date(timeString.substr(0, 10)) >= new Date().setHours(0,0,0,0);
   };
 
+  $scope.eventDayNumber = function (dayNumber) {
+    if (settings.oldEventsServerUrl) {
+      // Old event server sets day number between 0 and 6. New event server sets day number between 1 and 7.
+      return dayNumber + 1;
+    } else {
+      return dayNumber;
+    }
+  };
 
   /**
    * Get posters each 60 minutes
    */
   var postersFromService = [];
-  if (usePosters) {
+  if (settings.showPosters) {
     createUpdateTimer(posterService, 60, null, function(success, dataArray) {
       statusService.set("poster", success);
       if (success) {
@@ -47,14 +52,21 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
    * Get events each 60 minutes
    */
   var eventsFromService = [];
-  if (useEvents) {
+  if (settings.showEvents) {
     createUpdateTimer(eventService, 60, function() {
       var week1 = new Date().getCurrentWeek(0);
       var week2 = new Date().getCurrentWeek(1);
-      return [
-        '/' + week1.year + '-W' + (week1.week < 10 ? '0' : '') + week1.week,
-        '/' + week2.year + '-W' + (week2.week < 10 ? '0' : '') + week2.week
-      ];
+      if (settings.oldEventsServerUrl) {
+        return [
+          '?year=' + week1.year + '&week=' + (week1.week < 10 ? '0' : '') + week1.week,
+          '?year=' + week2.year + '&week=' + (week2.week < 10 ? '0' : '') + week2.week
+        ];
+      } else {
+        return [
+          '/' + week1.year + '-W' + (week1.week < 10 ? '0' : '') + week1.week,
+          '/' + week2.year + '-W' + (week2.week < 10 ? '0' : '') + week2.week
+        ];
+      }
     }, function(success, data, index) {
       statusService.set("event", success);
       if (success) {
@@ -66,7 +78,7 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
   /**
    * Get data from bibeln.se each 12 hours
    */
-  if (useBibelnSe) {
+  if (settings.showBibelnSe) {
     createUpdateTimer(bibelnSeService, 12*60, null, function(success, data) {
       statusService.set("bibelnSe", success);
       if (success) {
@@ -111,7 +123,7 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
     pagesLeftToShow = [];
     var pageIndexCounter = 0;
 
-    if (useBibelnSe) {
+    if (settings.showBibelnSe) {
       pagesLeftToShow.push({ 
         index: pageIndexCounter++,
         view: './views/welcome.html',
@@ -119,7 +131,7 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
       });
     }
 
-    if (useEvents && eventsFromService.length > 0) {
+    if (settings.showEvents && eventsFromService.length > 0) {
       var eventDays = [];
       eventsFromService.forEach(function(week) {
         week.days.forEach(function(day) {
@@ -134,7 +146,7 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
       });
     }
 
-    if (usePosters) {
+    if (settings.showPosters) {
       postersFromService.forEach(function(poster) {
         pagesLeftToShow.push({ 
           index: pageIndexCounter++,
@@ -170,3 +182,5 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
   // Start timer
   setTimeout(tick, 3000);
 }
+
+orbicularApp.controller('PageController', PageController);
