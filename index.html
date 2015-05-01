@@ -32,7 +32,7 @@
       <div class="title" ng-controller="TimeController">
         <p style="float: right; color: #999">{{date}} {{time}}</p>
         <h1>Välkommen till</h1>
-        <img src="./assets/img/logotype.png" atl="The logotype">
+        <img ng-src="{{logoSrc}}" atl="The logotype">
       </div>
 
       <div ng-controller="BookingController">
@@ -51,7 +51,7 @@
   </div>
 
   <script type='text/javascript' src='./assets/js/Settings.js'></script>
-  <script type='text/javascript' src='./Settings.js'></script>
+  <script type='text/javascript' src='./custom/Settings.js'></script>
   <script type='text/javascript' src='./assets/js/App.js'></script>
   <script type='text/javascript' src='./assets/js/Utils.js'></script>
   <script type='text/javascript' src='./assets/js/StatusController.js'></script>

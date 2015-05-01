@@ -13,5 +13,7 @@ var settings = {
   showEvents : true,
   showBibelnSe : true,
   
+  logoSrc : './assets/img/logotype.jpg',
+  
   welcomeContent : '<p>till oss...</p>'
 };

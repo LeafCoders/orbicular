@@ -6,7 +6,13 @@ Kiosk display web application for events, posters and bookings. The data is fetc
 Setup
 -----
 
-* Change the logotype image `assets/img/logotype.png` to your own
-* Set the `baseRosetteUrl` to your Rosette server in `assets/js/main.js`
-* Download this whole project and place it in a local folder.
+* Download the source
+* Create a folder in the root named `custom`
+* Create a file named `Settings.js` in the `custom` folder
+* Overrride settings that are specified in file `assets/js/Settings.js`. Like this:
+
+  > settings.showBookings = false;  
+  > settings.logoSrc = './custom/mylogo.png';  
+  > settings.welcomeContent = '<p>"This is the welcome text."</p>';
+
 * Start the application by opening `index.html` with either Safari, Chrome or Firefox.

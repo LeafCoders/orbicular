@@ -2,6 +2,8 @@
   var months = ['jan', 'feb', 'mars', 'april', 'maj', 'juni', 'juli', 'aug', 'sep', 'okt', 'nov', 'dec'];
   var nextMinuteToShow = new Date().getMinutes();
 
+  $scope.logoSrc = settings.logoSrc;
+
   $scope.date = "";
   $scope.time = "";
 
