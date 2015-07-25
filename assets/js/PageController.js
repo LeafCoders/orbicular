@@ -5,11 +5,7 @@
 
 createFetchService({ name: 'posterService', url: settings.rosetteBaseUrl + 'posters?onlyActive=true', request: 'jsonp', isArray: true });
 
-if (settings.oldEventsServerUrl) {
-  createFetchService({ name: 'eventService', url: settings.oldEventsServerUrl, request: 'json', isArray: false });
-} else {
-  createFetchService({ name: 'eventService', url: settings.rosetteBaseUrl + 'eventWeeks', request: 'jsonp', isArray: false });
-}
+createFetchService({ name: 'eventService', url: settings.rosetteBaseUrl + 'calendar', request: 'json', isArray: false });
 
 createFetchService({ name: 'bibelnSeService', url: 'http://www.bibeln.se/pren/syndikering.jsp', request: 'html' });
 
@@ -24,15 +20,6 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
 
   $scope.isTodayOrAfter = function (timeString) {
     return new Date(timeString.substr(0, 10)) >= new Date().setHours(0,0,0,0);
-  };
-
-  $scope.eventDayNumber = function (dayNumber) {
-    if (settings.oldEventsServerUrl) {
-      // Old event server sets day number between 0 and 6. New event server sets day number between 1 and 7.
-      return dayNumber + 1;
-    } else {
-      return dayNumber;
-    }
   };
 
   /**
@@ -54,19 +41,10 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
   var eventsFromService = [];
   if (settings.showEvents) {
     createUpdateTimer(eventService, 60, function() {
-      var week1 = new Date().getCurrentWeek(0);
-      var week2 = new Date().getCurrentWeek(1);
-      if (settings.oldEventsServerUrl) {
-        return [
-          '?year=' + week1.year + '&week=' + (week1.week < 10 ? '0' : '') + week1.week,
-          '?year=' + week2.year + '&week=' + (week2.week < 10 ? '0' : '') + week2.week
-        ];
-      } else {
-        return [
-          '/' + week1.year + '-W' + (week1.week < 10 ? '0' : '') + week1.week,
-          '/' + week2.year + '-W' + (week2.week < 10 ? '0' : '') + week2.week
-        ];
-      }
+      return [
+        '?rangeMode=week&rangeOffset=0',
+        '?rangeMode=week&rangeOffset=1'
+      ];
     }, function(success, data, index) {
       statusService.set("event", success);
       if (success) {

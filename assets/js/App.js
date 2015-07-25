@@ -17,7 +17,13 @@ orbicularApp.filter('dayOfDate', function() {
 
 orbicularApp.filter('nameOfDay', function() {
   return function(input) {
-    return ['Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör', 'Sön', '--'][Math.max(0, Math.min(6, input != null ? input-1 : 6))];
+    return ['', 'Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör', 'Sön'][Math.max(1, Math.min(7, input))];
+  };
+});
+
+orbicularApp.filter('nToBR', function() {
+  return function(input) {
+    return input.replace(/\n/gi, '<br>');
   };
 });
 

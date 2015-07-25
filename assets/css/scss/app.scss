@@ -18,32 +18,27 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  top: 99%;
-  bottom: 0;
-  overflow: hidden;
+  top: 98.5%;
+  bottom: 0.5%;
   @extend .centerChildrenH;
 
   & > div {
     @extend .animate;
     @include box-shadow(1);
 
-    width: 3vmin;
+    width: 1vmin;
     height: 100%;
 
     display: inline-block;
     margin: 0 0.2vmin;
     background-color: $main-bg-color;
+    opacity: 0.4;
 
     border: 1px solid #AAA;
-    border-width-bottom: 0;
 
     &.active {
+      opacity: 1.0;
       background-color: $header-bg-color;
-    }
-
-    &.visited {
-      opacity: 0.4;
-      background-color: #555;
     }
   }
 }

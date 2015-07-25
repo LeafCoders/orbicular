@@ -152,17 +152,17 @@ embed, figure, figcaption, footer, header, hgroup, video {
   box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   text-align: center; }
   .welcome h1 {
-    padding: 0.875vmin;
-    font-size: 3vmin;
-    line-height: 3vmin;
+    padding: 1.225vmin;
+    font-size: 4.2vmin;
+    line-height: 4.2vmin;
     color: #FFF;
     background-color: #73B532;
     text-transform: uppercase;
     text-overflow: ellipsis;
     white-space: nowrap; }
   .welcome > div {
-    padding: 0.875vmin;
-    font-size: 2.5vmin; }
+    padding: 1.225vmin;
+    font-size: 3.5vmin; }
   .welcome p {
     padding: 0.5vmin 2vmin; }
 
@@ -182,24 +182,24 @@ embed, figure, figcaption, footer, header, hgroup, video {
   box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
   text-align: center; }
   .bibelnSe h1 {
-    padding: 0.875vmin;
-    font-size: 3vmin;
-    line-height: 3vmin;
+    padding: 1.225vmin;
+    font-size: 4.2vmin;
+    line-height: 4.2vmin;
     color: #FFF;
     background-color: #73B532;
     text-transform: uppercase;
     text-overflow: ellipsis;
     white-space: nowrap; }
   .bibelnSe > div {
-    padding: 0.875vmin;
-    font-size: 2.5vmin; }
+    padding: 1.225vmin;
+    font-size: 3.5vmin; }
   .bibelnSe p {
     padding: 0.5vmin 2vmin; }
   .bibelnSe a {
     text-decoration: none;
     color: #000; }
   .bibelnSe .bibelnse_link {
-    font-size: 2vmin;
+    font-size: 2.8vmin;
     color: #999; }
 
 .centerChildrenH, .page, #pageIndicators {
@@ -403,24 +403,21 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  top: 99%;
-  bottom: 0;
-  overflow: hidden; }
+  top: 98.5%;
+  bottom: 0.5%; }
   #pageIndicators > div {
     -webkit-box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
     box-shadow: 0px 0.25vmin 0.6vmin 0px #999;
-    width: 3vmin;
+    width: 1vmin;
     height: 100%;
     display: inline-block;
     margin: 0 0.2vmin;
     background-color: #FFF;
-    border: 1px solid #AAA;
-    border-width-bottom: 0; }
+    opacity: 0.4;
+    border: 1px solid #AAA; }
     #pageIndicators > div.active {
+      opacity: 1.0;
       background-color: #73B532; }
-    #pageIndicators > div.visited {
-      opacity: 0.4;
-      background-color: #555; }
 
 #statusIndicators {
   position: absolute;
