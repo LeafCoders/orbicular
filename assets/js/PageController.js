@@ -3,9 +3,9 @@
  * Each page will be displayed as long as the duration is specified for the page.
  */
 
-createFetchService({ name: 'posterService', url: settings.rosetteBaseUrl + 'posters?onlyActive=true', request: 'jsonp', isArray: true });
+createFetchService({ name: 'posterService', url: settings.rosetteBaseUrl + 'public/posters', request: 'json', isArray: true });
 
-createFetchService({ name: 'eventService', url: settings.rosetteBaseUrl + 'calendar', request: 'json', isArray: false });
+createFetchService({ name: 'eventService', url: settings.rosetteBaseUrl + 'public/calendar', request: 'json', isArray: false });
 
 createFetchService({ name: 'bibelnSeService', url: 'http://www.bibeln.se/pren/syndikering.jsp', request: 'html' });
 
@@ -38,17 +38,12 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
   /**
    * Get events each 60 minutes
    */
-  var eventsFromService = [];
+  var eventsFromService = null;
   if (settings.showEvents) {
-    createUpdateTimer(eventService, 60, function() {
-      return [
-        '?rangeMode=week&rangeOffset=0',
-        '?rangeMode=week&rangeOffset=1'
-      ];
-    }, function(success, data, index) {
+    createUpdateTimer(eventService, 60, '?rangeMode=week&numRanges=3&startFromToday=true', function(success, data) {
       statusService.set("event", success);
       if (success) {
-        eventsFromService[index] = data;
+        eventsFromService = data;
       }
     });
   }
@@ -109,12 +104,10 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
       });
     }
 
-    if (settings.showEvents && eventsFromService.length > 0) {
+    if (settings.showEvents && eventsFromService) {
       var eventDays = [];
-      eventsFromService.forEach(function(week) {
-        week.days.forEach(function(day) {
-          eventDays.push(day);
-        });
+      eventsFromService.days.forEach(function(day) {
+        eventDays.push(day);
       });
       pagesLeftToShow.push({ 
         index: pageIndexCounter++,

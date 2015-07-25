@@ -3,7 +3,7 @@
  * The list is rotating so that the lowest item is moved to the top of the list.
 */
 
-createFetchService({ name: 'bookingService', url: settings.rosetteBaseUrl + 'bookings?onlyActiveToday=true', request: 'jsonp', isArray: true });
+createFetchService({ name: 'bookingService', url: settings.rosetteBaseUrl + 'public/bookings', request: 'json', isArray: true });
 
 function BookingController($scope, $http, $timeout, $window, bookingService, statusService) {
   $scope.bookings = [];

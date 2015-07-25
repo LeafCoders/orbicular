@@ -9,7 +9,8 @@
 function createFetchService(options) {
   orbicularApp.factory(options.name, function($resource, $http) {
     return {
-      fetchData : function(index, params, callback) {
+      fetchData : function(params, callback) {
+        params = params ? params : '';
         if (options.request == 'html') {
           $http({ method: 'GET', url: options.url + params }).then(function(response) {
             callback(true, response.data, index);
@@ -31,10 +32,10 @@ function createFetchService(options) {
           }
 
           api.fetch(function(response) {
-            callback(true, response, index);
+            callback(true, response);
           }, function() {
             // Failed to fetch data
-            callback(false, null, index);
+            callback(false, null);
           });
         }
       }
@@ -45,21 +46,18 @@ function createFetchService(options) {
 /**
  * fetchService shall be a result of createFetchService()
  * minutesFetchDelay is the number of minutes between fetchServise is called
- * getParamsCallback shall return an array with params to add to fetch service
+ * params params to add to fetchService
  * responseCallback shall be a method with two params: successfull and an array of data
  */
-function createUpdateTimer(fetchService, minutesFetchDelay, getParamsCallback, responseCallback) {
+function createUpdateTimer(fetchService, minutesFetchDelay, params, responseCallback) {
   var tick = function() {
-    var params = getParamsCallback ? getParamsCallback() : [''];
-    for (var i = 0; i < params.length; ++i) {
-      fetchService.fetchData(i, params[i], function(success, dataArray, index) {
-        if (success) {
-          responseCallback(true, dataArray, index);
-        } else {
-          responseCallback(false)
-        }
-      });
-    }
+    fetchService.fetchData(params, function(success, dataArray) {
+      if (success) {
+        responseCallback(true, dataArray);
+      } else {
+        responseCallback(false)
+      }
+    });
   };
 
   fetchDelay = Math.max(1, Math.min(24*60, minutesFetchDelay))
