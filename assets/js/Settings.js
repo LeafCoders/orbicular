@@ -2,7 +2,7 @@
 
 var settings = {
   // Base url to Rosette server
-  rosetteBaseUrl : "http://localhost:9000/api/v1-snapshot/",
+  rosetteBaseUrl : "http://localhost:9000/api/v1/",
 
   // Enable data to show
   showPosters : true,
