@@ -1,0 +1,8 @@
+﻿<div style="zoom: 2.5; position: absolute; left: 2%; right: 2%; top: 2%;">
+<div ng-repeat="booking in page.item" class="booking">
+  <h1>{{ booking.customerName }}</h1>
+  <div class="time">{{ booking.startTime | time }} - {{ booking.endTime | time }}</div>
+  <div class="location" ng-bind-html="booking.location.text | unsafe"></div>
+<!--  <div class="locationImage" ng-show="directionImageUrl(booking)"><img ng-src="{{ directionImageUrl(booking) }}"/></div> -->
+</div>
+</div>

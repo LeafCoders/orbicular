@@ -2,17 +2,11 @@
  * Fetches posters and events from a Rosette server and displays each at a time.
  * Each page will be displayed as long as the duration is specified for the page.
  */
-
-createFetchService({ name: 'posterService', url: settings.rosetteBaseUrl + 'public/posters', request: 'json', isArray: true });
-
-createFetchService({ name: 'eventService', url: settings.rosetteBaseUrl + 'public/calendar', request: 'json', isArray: false });
-
-createFetchService({ name: 'bibelnSeService', url: 'http://www.bibeln.se/pren/syndikering.jsp', request: 'html' });
-
-function PageController($scope, $http, $timeout, posterService, eventService, bibelnSeService, statusService) {
+function PageController($scope, $http, $timeout, posterService, eventService, bookingService, bibelnSeService, statusService) {
   var NOT_VISITED = 0, ACTIVE = 1, VISITED = 2;
   var activePage = null;
   var pagesLeftToShow = new Array();
+
   $scope.pages = [];
   $scope.pageIndicators = [];
   $scope.halfDurationPassed = false;
@@ -22,45 +16,7 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
     return new Date(timeString.substr(0, 10)) >= new Date().setHours(0,0,0,0);
   };
 
-  /**
-   * Get posters each 60 minutes
-   */
-  var postersFromService = [];
-  if (settings.showPosters) {
-    createUpdateTimer(posterService, 60, null, function(success, dataArray) {
-      statusService.set("poster", success);
-      if (success) {
-        postersFromService = dataArray;
-      }
-    });
-  }
-
-  /**
-   * Get events each 60 minutes
-   */
-  var eventsFromService = null;
-  if (settings.showEvents) {
-    createUpdateTimer(eventService, 60, '?rangeMode=week&numRanges=3&startFromToday=true', function(success, data) {
-      statusService.set("event", success);
-      if (success) {
-        eventsFromService = data;
-      }
-    });
-  }
-
-  /**
-   * Get data from bibeln.se each 12 hours
-   */
-  if (settings.showBibelnSe) {
-    createUpdateTimer(bibelnSeService, 12*60, null, function(success, data) {
-      statusService.set("bibelnSe", success);
-      if (success) {
-        $scope.bibelnSe = BibelnSeConverter(data);
-      }
-    });
-  }
-
-  var resetIndicators = function() {
+  function resetIndicators() {
     for (var i = 0; i < pagesLeftToShow.length; ++i) {
       if (i < $scope.pageIndicators.length) {
         $scope.pageIndicators[i].state = NOT_VISITED;
@@ -84,19 +40,38 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
     $scope.$apply();
   };
 
-  var showNextPage = function() {
-    var page = pagesLeftToShow.shift();
+  var isShowingBookings = false;
+
+  function showNextPage() {
+    var page;
+
+    // Show bookings page before a page is shown
+    var soonBookings = bookingService.bookingsStartsSoon();
+    if (soonBookings && soonBookings.length && !isShowingBookings) {
+      isShowingBookings = true;
+      page = {
+        index: pagesLeftToShow[0].index,
+        view: './views/bookings.html',
+        showDuration: 5,
+        item: soonBookings
+      };
+    } else {
+      isShowingBookings = false;
+      page = pagesLeftToShow.shift();
+    }
+
     $scope.pages.pop();
     $scope.pages.push(page);
     return page;
   };
 
-  var setupPagesToShow = function() {
+  function setupPagesToShow() {
     activePage = null;
     pagesLeftToShow = [];
     var pageIndexCounter = 0;
 
-    if (settings.showBibelnSe) {
+    if (bibelnSeService.bibelnSe.data) {
+      $scope.bibelnSe = bibelnSeService.bibelnSe.data;
       pagesLeftToShow.push({ 
         index: pageIndexCounter++,
         view: './views/welcome.html',
@@ -104,20 +79,18 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
       });
     }
 
-    if (settings.showEvents && eventsFromService) {
-      var eventDays = [];
-      eventsFromService.days.forEach(function(day) {
-        eventDays.push(day);
-      });
+    var eventDaysFromService = eventService.eventDays;
+    if (eventDaysFromService && eventDaysFromService.length > 0) {
       pagesLeftToShow.push({ 
         index: pageIndexCounter++,
         view: './views/event.html',
         showDuration: 15,
-        item: eventDays
+        item: eventDaysFromService
       });
     }
 
-    if (settings.showPosters) {
+    var postersFromService = posterService.posters;
+    if (postersFromService && postersFromService.length > 0) {
       postersFromService.forEach(function(poster) {
         pagesLeftToShow.push({ 
           index: pageIndexCounter++,
@@ -130,11 +103,12 @@ function PageController($scope, $http, $timeout, posterService, eventService, bi
     }
   };
 
-  var tick = function () {
+  function tick() {
     if (pagesLeftToShow.length == 0) {
       setupPagesToShow();
       resetIndicators();
     }
+
     if (pagesLeftToShow.length > 0) {
       var lastPageIndex = activePage ? activePage.index : null;
       activePage = showNextPage();
