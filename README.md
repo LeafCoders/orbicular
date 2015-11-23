@@ -15,4 +15,6 @@ Setup
   > settings.logoSrc = './custom/mylogo.png';  
   > settings.welcomeContent = '<p>"This is the welcome text."</p>';
 
+* Install Chomre extension "Close Kiosk" and set setting `terminateTime` to `03:55` to
+  exit kiosk mode and terminate Chrome gracefully at time 03:55. 
 * Start the application by opening `index.html` with either Safari, Chrome or Firefox.
