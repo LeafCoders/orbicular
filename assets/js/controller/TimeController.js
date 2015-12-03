@@ -41,18 +41,29 @@
 
   // Each night we restart the computer who runs Chrome with Orbicular. We restart
   // the computer to "handle" memory leaks. Closing Chrome (with kill process terminal command),
-  // when running in kiosk mode, will somethimes make Chrome show a notification dialog
+  // when running in kiosk mode, will sometimes make Chrome show a notification dialog
   // with text "Google Chrome didn't shut down correctly". With setting "terminateTime" we
   // change url to "http://closekiosk". The Chomre extension "Close Kiosk" will listen for this
   // url and then close Chrome gracefully. :)
+  var hasBeenBeforeTerminateTime = false;  
+  
   function checkForTermination(now) {
     if (settings.terminateTime) {
-      var parts = settings.terminateTime.split(':');
-      if (now.getHours() == parseInt(parts[0]) && now.getMinutes() >= parseInt(parts[1])) {
-        $window.location.href = "http://closekiosk";
-      }
+      if (isAfterTerminateTime(now, settings.terminateTime)) {
+        if (hasBeenBeforeTerminateTime) {
+          $window.location.href = "http://closekiosk";
+        }
+      } else {
+        hasBeenBeforeTerminateTime = true;
+      }    
     }
-    now.getHours()
+  }
+
+  function isAfterTerminateTime(now, terminateTime) {
+    var parts = terminateTime.split(':');
+    var hour = parseInt(parts[0]);
+    var minute = parseInt(parts[1]);
+    return now.getHours() > hour || (now.getHours() == hour && now.getMinutes() >= minute);    
   }
 
   // Start timer
