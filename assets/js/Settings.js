@@ -10,9 +10,6 @@ var settings = {
   showEvents : true,
   showBibelnSe : true,
 
-  // Will terminate chrome at specified time if extension 'Close Kiosk' is installed. Eg. "03:50"
-  terminateTime : null,
-
   logoSrc : './assets/img/logotype.jpg',
   
   welcomeContent : '<p>till oss...</p>'
