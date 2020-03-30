@@ -1,0 +1,10 @@
+{
+  "name": "Orbicular Slide Show Presenter",
+  "short_name": "Orbicular",
+  "description": "Presents slides from a slide show.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#3f51b5",
+  "background_color": "#3f51b5"
+}

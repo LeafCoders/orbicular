@@ -1,5 +1,48 @@
 {
-  "name"    : "Orbicular",
-  "version" : "1.0.0",
-  "main"    : "electron-main.js"
+  "name": "orbicular",
+  "version": "0.1.0",
+  "contributors": [
+    "LeafCoders"
+  ],
+  "repository": "LeafCoders/orbicular",
+  "scripts": {
+    "start": "gulp serve",
+    "build": "tsc && polymer build",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:integration": "tsc && mocha test/integration --timeout=10000 --require esm",
+    "test:unit": "tsc && polymer test --module-resolution=node --npm",
+    "replace:index_html": "replace 'index.html' 'name.html' ./build/ -r --include='*.*'",
+    "replace:orbicular_app_js": "replace 'orbicular-app.js' 'name-orbicular-app.js' ./build/ -r --include='*.*'",
+    "replace:manifest_json": "replace 'manifest.json' 'name-manifest.json' ./build/ -r --include='*.*'",
+    "replace:service_worker_js": "replace 'service-worker.js' 'name-service-worker.js' ./build/ -r --include='*.*'",
+    "replace:all": "npm run replace:index_html && npm run replace:orbicular_app_js && npm run replace:manifest_json && npm run replace:service_worker_js",
+    "rename:index_html": "mv build/prod-es6/index.html build/prod-es6/name.html",
+    "rename:orbicular_app_js": "mv build/prod-es6/orbicular-app.js build/prod-es6/name-orbicular-app.js",
+    "rename:manifest_json": "mv build/prod-es6/manifest.json build/prod-es6/name-manifest.json",
+    "rename:service_worker_js": "mv build/prod-es6/service-worker.js build/prod-es6/name-service-worker.js",
+    "rename:all": "npm run rename:index_html && npm run rename:orbicular_app_js && npm run rename:manifest_json && npm run rename:service_worker_js",
+    "build:name": "npm run build && npm run replace:all && npm run rename:all"
+  },
+  "dependencies": {
+    "@polymer/iron-ajax": "^3.0.1",
+    "@polymer/polymer": "^3.1.0",
+    "@webcomponents/webcomponentsjs": "^2.2.4",
+    "lit-element": "^2.0.1",
+    "pwa-helpers": "^0.9.0",
+    "web-animations-js": "^2.3.2"
+  },
+  "devDependencies": {
+    "@polymer/test-fixture": "^4.0.2",
+    "axe-core": "^3.0.0",
+    "chai": "^4.1.2",
+    "chai-string": "^1.5.0",
+    "del": "^3.0.0",
+    "esm": "^3.2.25",
+    "gulp": "^4.0.0",
+    "mocha": "^5.2.0",
+    "polymer-cli": "^1.9.11",
+    "replace": "^1.1.5",
+    "typescript": "^3.1.3",
+    "wct-mocha": "^1.0.0"
+  }
 }

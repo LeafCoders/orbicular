@@ -1,68 +1,42 @@
-﻿<!DOCTYPE html>
-<html lang="sv-SE">
-<head>
-  <meta charset="utf-8">
-  <title>Orbicular</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-
-  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
-  <link rel="stylesheet" href="./assets/css/app.css" type='text/css'>
-  <script src="./assets/js/vendor/jquery-1.8.1.min.js"></script>
-  <script type='text/javascript' src="./assets/js/vendor/angular.js"></script>
-  <script type='text/javascript' src="./assets/js/vendor/angular-resource.js"></script>
-  <script type='text/javascript' src="./assets/js/vendor/angular-animate.js"></script>
-  <script type='text/javascript' src="./assets/js/vendor/angular-sanitize.js"></script>
-</head>
-<body ng-app="orbicularApp">
-  <div id="content">
-<!--    <div id="rect1610"></div> -->
-
-    <div id="pagePanel" ng-controller="PageController">
-      <div ng-repeat="page in pages" class="page" ng-class="{centerChildrenV: page.centerVertically}">
-        <div ng-include="page.view"></div>
-      </div>
-      <div id="pageIndicators">
-        <div ng-repeat="ind in pageIndicators" ng-class="{active: ind.state == 1, visited: ind.state == 2}"></div>
-      </div>
-    </div>
-
-    <div id="sidePanelBackground"></div>
-    <div id="sidePanel">
-      <div class="title" ng-controller="TimeController">
-        <p style="float: right; color: #999">{{date}} {{time}}</p>
-        <h1>Välkommen till</h1>
-        <img ng-src="{{logoSrc}}" atl="The logotype">
-      </div>
-
-      <div ng-controller="BookingController">
-        <div ng-repeat="b in bookings" class="booking">
-          <h1>{{ b.customerName }}</h1>
-          <div class="time">{{ b.startTime | time }} - {{ b.endTime | time }}</div>
-          <div class="location" ng-bind-html="b.location.text | unsafe"></div>
-  <!--        <div class="locationImage" ng-show="directionImageUrl(b)"><img ng-src="{{ directionImageUrl(b) }}"/></div> -->
-        </div>
-      </div>
-    </div>
-
-    <div id="statusIndicators" ng-controller="StatusController">
-      <div ng-repeat="st in status" ng-class="{noConnection: !st.hasConnection}"></div>
-    </div>
-  </div>
-
-  <script type='text/javascript' src='./assets/js/Settings.js'></script>
-  <script type='text/javascript' src='./custom/Settings.js'></script>
-  <script type='text/javascript' src='./assets/js/App.js'></script>
-  <script type='text/javascript' src='./assets/js/Utils.js'></script>
-  <script type='text/javascript' src='./assets/js/BibelnSeConverter.js'></script>
-  <script type='text/javascript' src='./assets/js/service/StatusService.js'></script>
-  <script type='text/javascript' src='./assets/js/service/PosterService.js'></script>
-  <script type='text/javascript' src='./assets/js/service/EventService.js'></script>
-  <script type='text/javascript' src='./assets/js/service/BibelnSeService.js'></script>
-  <script type='text/javascript' src='./assets/js/service/BookingService.js'></script>
-  <script type='text/javascript' src='./assets/js/controller/StatusController.js'></script>
-  <script type='text/javascript' src='./assets/js/controller/PageController.js'></script>
-  <script type='text/javascript' src='./assets/js/controller/TimeController.js'></script>
-  <script type='text/javascript' src='./assets/js/controller/BookingController.js'></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Orbicular</title>
+    <base href="/">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Presents slides from a slide show">
+    <meta name="theme-color" content="#3f51b5">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Orbicular">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Orbicular">
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js', { scope: './' });
+        });
+      }
+    </script>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+  </head>
+  <body>
+    <orbicular-app
+      rosette-base-url="http://localhost:9000"
+      slide-show-id-alias="tv1"
+      show-indicator="true">
+    </orbicular-app>
+    <noscript>
+      Du måste aktivera JavaScript i din webbläsare för att kunna se sidan.
+    </noscript>
+    <script type="module" src="orbicular-app.js"></script>
+  </body>
 </html>

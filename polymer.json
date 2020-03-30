@@ -1,0 +1,30 @@
+{
+  "entrypoint": "index.html",
+  "shell": "orbicular-app.js",
+  "extraDependencies": [
+    "manifest.json"
+  ],
+  "builds": [
+    {
+      "name": "prod-es6",
+      "browserCapabilities": [
+        "es2015",
+        "modules"
+      ],
+      "basePath": "/",
+      "js": {
+        "minify": true
+      },
+      "css": {
+        "minify": true
+      },
+      "html": {
+        "minify": false
+      },
+      "bundle": true,
+      "addServiceWorker": true
+    }
+  ],
+  "moduleResolution": "node",
+  "npm": true
+}

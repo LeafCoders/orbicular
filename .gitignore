@@ -1,3 +1,5 @@
-/custom/*
-**/.sass-cache
-**/*.map
+build/
+node_modules/
+.DS_Store
+orbicular-app.js
+src/**/*.js
